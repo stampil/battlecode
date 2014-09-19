@@ -18,9 +18,27 @@
 <body>
 <h1>V0.0.1</h1>
 
+<script>
+ function scan(){   
+    cordova.plugins.barcodeScanner.scan(
+      function (result) {
+          var ret = "We got a barcode\n" +
+                "Result: " + result.text + "\n" +
+                "Format: " + result.format + "\n" +
+                "Cancelled: " + result.cancelled;
+            document.getElementById('ret').innerText=ret;
+      }, 
+      function (error) {
+          var ret = "Scanning failed: " + error;
+           document.getElementById('ret').innerText=ret;
+      }
+   );
+ }  
+</script>
 
+<input type="button" value="scan" onclick="scan()" />
 
-
+<div id="ret"></div>
 
 
 </body>
