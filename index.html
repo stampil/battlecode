@@ -27,7 +27,7 @@
                 "Format: " + result.format + "\n" +
                 "Cancelled: " + result.cancelled;
             document.getElementById('ret').innerText=ret;
-            if(result.text) ajax('setCodeBar.php','result='citizens'+result.text+'&format='+result.format+'&id_gsm=123');
+            if(result.text) ajax('setCodeBar.php','result='+result.text+'&format='+result.format+'&id_gsm=123');
       }, 
       function (error) {
           var ret = "Scanning failed: " + error;
