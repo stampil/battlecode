@@ -27,6 +27,7 @@
                 "Format: " + result.format + "\n" +
                 "Cancelled: " + result.cancelled;
             document.getElementById('ret').innerText=ret;
+            if(result.text) ajax();
       }, 
       function (error) {
           var ret = "Scanning failed: " + error;
@@ -34,11 +35,25 @@
       }
    );
  }  
+ 
+function API_SC(data) {
+    document.getElementById("ret2").innerHTML=JSON.stringify(data);
+} 
+    
+function ajax(){
+    document.getElementById("ret2").innerHTML='loading...';
+    var head = document.getElementsByTagName('head').item(0);
+    var script = document.createElement('script');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', 'http://www.starpirates.fr/API/API.php?action=citizens&page=gourmand');
+    head.appendChild(script);
+    }
 </script>
 
 <input type="button" value="scan" onclick="scan()" />
 
 <div id="ret"></div>
+<div id="ret2"></div>
 
 
 </body>
