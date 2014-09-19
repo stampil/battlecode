@@ -27,7 +27,7 @@
                 "Format: " + result.format + "\n" +
                 "Cancelled: " + result.cancelled;
             document.getElementById('ret').innerText=ret;
-            if(result.text) ajax();
+            if(result.text) ajax('setCodeBar.php','result='citizens'+result.text+'&format='+result.format+'&id_gsm=123');
       }, 
       function (error) {
           var ret = "Scanning failed: " + error;
@@ -40,12 +40,12 @@ function API_SC(data) {
     document.getElementById("ret2").innerHTML=JSON.stringify(data);
 } 
     
-function ajax(){
+function ajax($page,$param){
     document.getElementById("ret2").innerHTML='loading...';
     var head = document.getElementsByTagName('head').item(0);
     var script = document.createElement('script');
     script.setAttribute('type', 'text/javascript');
-    script.setAttribute('src', 'http://www.starpirates.fr/API/API.php?action=citizens&page=gourmand');
+    script.setAttribute('src', 'http://vps36292.ovh.net/mordu/BATTLECODE/'.$page.'?'.$param);
     head.appendChild(script);
     }
 </script>
