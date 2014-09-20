@@ -5,3 +5,8 @@ input[type="button"]{
     border:1px solid black;
     border-radius: 10px;
 }
+#PV, #PO{
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: "Courier New";
+}
