@@ -1,4 +1,6 @@
 var el = document.querySelector("#scan_button");
-el.onclick(function(){
+console.log(el);
+el.onclick=function(e){
+    console.log('click',e);
     scan();
-});
+};

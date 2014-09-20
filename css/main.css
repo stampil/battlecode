@@ -1,7 +1,7 @@
-input[button]{
-    width:100%;
+input[type="button"]{
+    width:80%;
     padding:10px;
-    margin:5px;
+    margin:35px;
     border:1px solid black;
     border-radius: 10px;
 }
