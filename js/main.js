@@ -15,15 +15,18 @@ if(typeof cordova =='undefined'){
 function scan(){
     cordova.plugins.barcodeScanner.scan(
         function (result) {
-            var ret = "We got a barcode\n" +
-                "Result: " + result.text + "\n" +
-                "Format: " + result.format + "\n" +
-                "Cancelled: " + result.cancelled;
-            document.getElementById('ret').textContent=ret;
+            /*
+             result.text result.format  result.cancelled
+             */
+
+
             if(result.text) {
                 var BBF = new BattleBarFighter(result.text);
                 BBF.save();
                 BBF.displayCodeBar('ret');
+            }
+            else{
+                document.getElementById('ret').textContent='Scanning cancelled';
             }
 
         },
