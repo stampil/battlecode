@@ -21,7 +21,7 @@ function scan(){
 
 
             if(result.text) {
-                var BBF = new BattleBarFighter(result.text);
+                var BBF = new BattleBarFighter(result);
                 BBF.save();
                 BBF.displayCodeBar('ret');
             }
