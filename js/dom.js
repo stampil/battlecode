@@ -4,3 +4,4 @@ el.onclick=function(e){
     console.log('click',e);
     scan();
 };
+
