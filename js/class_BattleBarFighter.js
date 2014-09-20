@@ -33,7 +33,7 @@ function BattleBarFighter(codebar) {
     };
 
     this.displayCodeBar = function(div){
-        document.getElementById(div).innerHTML =this.codebar.text+'<div id="PV"> PV:'+this.PV+'</div><div id="FO"> FO :'+this.FO+'</div>';
+        document.getElementById(div).innerHTML =this.codebar.text+'<div id="PV">PV: '+this.PV+'</div><div id="FO">FO: '+this.FO+'</div>';
     };
 
 }
