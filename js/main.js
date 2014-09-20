@@ -37,9 +37,7 @@ function scan(){
     );
 }
 
-function cb_set_code_bar(data) {
-    document.getElementById("ret2").textContent=JSON.stringify(data);
-}
+
 
 function ajax(page,param, callback){
     document.getElementById("ret2").textContent='loading...';
