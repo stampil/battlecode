@@ -8,6 +8,7 @@ function BattleBarFighter(codebar) {
 
         generate_PV();
         generate_FO();
+        generate_name();
 
 
     function generate_PV(){
