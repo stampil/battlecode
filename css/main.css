@@ -15,9 +15,10 @@ input[type="button"]{
     font-size: 1.2em;
     color:whitesmoke;
     background-color:darkslategrey ;
-    width:100px;
+    width:200px;
     padding:10px;
     margin:20px 0;
+    text-align: center;
 }
 
 #PV{
