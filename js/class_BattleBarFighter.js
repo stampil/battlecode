@@ -22,7 +22,7 @@ function BattleBarFighter(codebar) {
     generate_PV();
     generate_FO();
     generate_ARMOR();
-    generate_name();
+    generate_roman_name();
     this.type = getType();
 
     function getType(){
@@ -129,6 +129,47 @@ function BattleBarFighter(codebar) {
             self.name += get_letter(c,inc--);
             self.name += get_letter(end,inc--);
         }
+
+    }
+
+    function generate_roman_name(){
+        var sumMax = maxARMOR+maxFO+maxPV;
+        var sumCaract = self.ARMOR+self.FO+self.PV;
+        var limit_mega = sumMax*2/3;
+        var limit_super = sumMax/3;
+        self.name='';
+        if (sumCaract> limit_mega ){
+            self.name+= 'Centurion ';
+        }else if(sumCaract>limit_super){
+            self.name+= 'Decurion ';
+        }else{
+            self.name+= 'Legionnaire ';
+        }
+
+
+        var inc = self.stringNumber.length-1;
+
+        self.name += get_letter(c,inc--).toUpperCase();
+        self.name += get_letter(v,inc--);
+        self.name += get_letter(c,inc--);
+        self.name += 'ius ';
+
+        self.name += get_letter(c,inc--).toUpperCase();
+        self.name += get_letter(v,inc--);
+        self.name += get_letter(c,inc--);
+        self.name += get_letter(c,inc--);
+        self.name += 'us ';
+
+        self.name += get_letter(c,inc--).toUpperCase();
+        self.name += get_letter(v,inc--);
+        self.name += get_letter(c,inc--);
+        self.name += get_letter(c,inc--);
+        self.name += get_letter(v,inc--);
+        self.name += get_letter(c,inc--);
+        self.name += 'ar';
+
+
+
 
     }
 
