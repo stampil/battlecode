@@ -23,6 +23,7 @@ function BattleBarFighter(codebar) {
     generate_FO();
     generate_ARMOR();
     generate_name();
+    this.type = getType();
 
     function getType(){
         self.type = 0;
