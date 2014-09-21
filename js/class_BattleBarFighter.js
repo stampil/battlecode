@@ -26,7 +26,7 @@ function BattleBarFighter(codebar) {
     this.type = getType();
 
     function getType(){
-        if(self.PV<4000){
+        if(self.PV<2000){
             return type_armure;
         }
         if(self.FO<1000){
