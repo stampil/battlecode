@@ -4,7 +4,7 @@ function BattleBarFighter(codebar) {
     this.FO;
     this.name;
     var self = this;
-    var end = ['ith','on','ton','field','man','us','sa','oth','ion'];
+    var end = ['ith','on','ton','field','man','us','sa','oth','ion','aure','or','ob'];
     var c = ["b","c","d","f","g","h","j","k","l","m","n","p","r","s","t","v","w","x","y","z"];
     var v =["a","i","e","o","u"];
 
@@ -33,36 +33,36 @@ function BattleBarFighter(codebar) {
         }
     }
     function get_letter(tab,string,inc){
-        return tab[(parseInt(string[inc])+ tab.length)% tab.length];
+        return tab[(parseInt(string[inc])+ tab.length*13)% tab.length];
     }
 
     function generate_name(){
         var string = self.codebar.text.toString();
         self.name='';
-        var inc = 2;
+        var inc = string.length-1;
 
         if(parseInt(string[1])%3==0){
-            self.name += get_letter(c,string,inc++);
-            self.name += get_letter(v,string,inc++);
-            self.name += get_letter(c,string,inc++);
-            self.name += get_letter(c,string,inc++);
-            self.name += get_letter(v,string,inc++);
-            self.name += get_letter(c,string,inc++);
-            self.name += get_letter(end,string,inc++);
+            self.name += get_letter(c,string,inc--).toUpperCase();
+            self.name += get_letter(v,string,inc--);
+            self.name += get_letter(c,string,inc--);
+            self.name += get_letter(c,string,inc--);
+            self.name += get_letter(v,string,inc--);
+            self.name += get_letter(c,string,inc--);
+            self.name += get_letter(end,string,inc--);
         }
         else if(parseInt(string[1])%3==1) {
-            self.name += get_letter(c,string,inc++);
-            self.name += get_letter(v,string,inc++);
-            self.name += get_letter(c,string,inc++);
-            self.name += get_letter(end,string,inc++);
+            self.name += get_letter(c,string,inc--).toUpperCase();
+            self.name += get_letter(v,string,inc--);
+            self.name += get_letter(c,string,inc--);
+            self.name += get_letter(end,string,inc--);
         }
         else{
-            self.name += get_letter(c,string,inc++);
-            self.name += get_letter(v,string,inc++);
-            self.name += get_letter(c,string,inc++);
-            self.name += get_letter(v,string,inc++);
-            self.name += get_letter(c,string,inc++);
-            self.name += get_letter(end,string,inc++);
+            self.name += get_letter(c,string,inc--).toUpperCase();
+            self.name += get_letter(v,string,inc--);
+            self.name += get_letter(c,string,inc--);
+            self.name += get_letter(v,string,inc--);
+            self.name += get_letter(c,string,inc--);
+            self.name += get_letter(end,string,inc--);
         }
 
     }
