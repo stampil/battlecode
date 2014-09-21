@@ -4,7 +4,9 @@ function BattleBarFighter(codebar) {
     this.FO;
     this.name;
     var self = this;
-    var tabName = ['an','to','ni','pa','ta','sa','me','ki','lu','bo'];
+    var end = ['ith','on','ton','field','man','us','sa','oth','ion'];
+    var c = ["b","c","d","f","g","h","j","k","l","m","n","p","r","s","t","v","w","x","y","z"];
+    var v =["a","i","e","o","u"];
 
         generate_PV();
         generate_FO();
@@ -30,15 +32,39 @@ function BattleBarFighter(codebar) {
             }
         }
     }
+    function get_letter(tab,string,inc){
+        return tab[(parseInt(string[inc])+ tab.length)% tab.length];
+    }
 
     function generate_name(){
         var string = self.codebar.text.toString();
         self.name='';
-        for (var i=0; i<string.length; i++){
-            if(i%3==0){
-                self.name+= tabName[parseInt(string[i])%10];
-            }
+        var inc = 2;
+
+        if(parseInt(string[1])%3==0){
+            self.name += get_letter(c,string,inc++);
+            self.name += get_letter(v,string,inc++);
+            self.name += get_letter(c,string,inc++);
+            self.name += get_letter(c,string,inc++);
+            self.name += get_letter(v,string,inc++);
+            self.name += get_letter(c,string,inc++);
+            self.name += get_letter(end,string,inc++);
         }
+        else if(parseInt(string[1])%3==1) {
+            self.name += get_letter(c,string,inc++);
+            self.name += get_letter(v,string,inc++);
+            self.name += get_letter(c,string,inc++);
+            self.name += get_letter(end,string,inc++);
+        }
+        else{
+            self.name += get_letter(c,string,inc++);
+            self.name += get_letter(v,string,inc++);
+            self.name += get_letter(c,string,inc++);
+            self.name += get_letter(v,string,inc++);
+            self.name += get_letter(c,string,inc++);
+            self.name += get_letter(end,string,inc++);
+        }
+
     }
 
     this.save = function(){
