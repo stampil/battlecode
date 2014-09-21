@@ -7,9 +7,9 @@ function BattleBarFighter(codebar) {
     this.type;
     this.stringNumber = codebar.text.toString();
 
-    var maxPV;
-    var maxFO;
-    var maxARMOR;
+    var maxPV= 10000;
+    var maxFO=4000;
+    var maxARMOR=2500;
     var self = this;
     var end = ['ith','on','er','an','us','as','oth','ion','ius','aure','or','ob'];
     var c = ["b","c","d","f","g","h","j","k","l","m","n","p","r","s","t","v","w","x","y","z"];
@@ -26,57 +26,56 @@ function BattleBarFighter(codebar) {
     this.type = getType();
 
     function getType(){
-        self.type = 0;
-        for (var i=0; i<self.stringNumber.length; i++){
-            if(i%2==1){
-                self.type += (parseInt(self.stringNumber[i])+1)*167;
-            }
-            else{
-                self.type += (parseInt(self.stringNumber[i])+1)*233;
-            }
+        if(self.PV<4000){
+            return type_armure;
         }
-
-        self.type = self.type%15;
-        if(self.type<2) return type_caractere;
-        if(self.type<5) return type_arme;
+        if(self.FO<1000){
+            return type_arme;
+        }
         return type_caractere;
-
     }
 
 
     function generate_PV(){
         self.PV=0;
-        maxPV=0;
         for (var i=0; i<self.stringNumber.length; i++){
             if(i%2==1){
-                self.PV+= (parseInt(self.stringNumber[i])+1)*167;
-                maxPV+=10*167;
+                self.PV+= (parseInt(self.stringNumber[i])+1)*315;
+                console.log(i,self.stringNumber[i],1,167,self.PV);
+            }
+            else{
+                self.PV+= (parseInt(self.stringNumber[i])+1)*87;
+                console.log(i,self.stringNumber[i],1,87,self.PV);;
             }
         }
+        self.PV %= maxPV;
     }
 
     function generate_FO(){
 
         self.FO=0;
-        maxFO=0;
         for (var i=0; i<self.stringNumber.length; i++){
             if(i%3==0){
-                self.FO+= (parseInt(self.stringNumber[i])+1)*85;
-                maxFO+=10*85;
+                self.FO+= (parseInt(self.stringNumber[i])+1)*315;
+            }else{
+                self.FO+= (parseInt(self.stringNumber[i])+1)*95;
             }
         }
+        self.FO %= maxFO;
     }
 
     function generate_ARMOR(){
 
         self.ARMOR=0;
-        maxARMOR=0;
         for (var i=0; i<self.stringNumber.length; i++){
             if(i%3==1){
-                self.ARMOR+= (parseInt(self.stringNumber[i])+1)*43;
-                maxARMOR+= 10*43;
+                self.ARMOR+= (parseInt(self.stringNumber[i])+1)*315;
+            }
+            else{
+                self.ARMOR+= (parseInt(self.stringNumber[i])+1)*63;
             }
         }
+        self.ARMOR %= maxARMOR;
     }
     
     
@@ -154,16 +153,23 @@ function BattleBarFighter(codebar) {
         self.name += get_letter(c,inc--);
         self.name += 'ius ';
 
-        self.name += get_letter(c,inc--).toUpperCase();
-        self.name += get_letter(v,inc--);
-        self.name += get_letter(c,inc--);
-        self.name += get_letter(c,inc--);
-        self.name += 'us ';
 
+
+        if(parseInt(self.stringNumber[inc])%2==0){
+            self.name += get_letter(c,inc--).toUpperCase();
+            self.name += get_letter(c,inc--);
+            self.name += get_letter(v,inc--);
+            self.name += get_letter(c,inc--);
+            self.name += 'us ';
+        }
+        else{
+            self.name += get_letter(c,inc--).toUpperCase();
+            self.name += get_letter(v,inc--);
+            self.name += get_letter(c,inc--);
+            self.name += get_letter(c,inc--);
+            self.name += 'us ';
+        }
         self.name += get_letter(c,inc--).toUpperCase();
-        self.name += get_letter(v,inc--);
-        self.name += get_letter(c,inc--);
-        self.name += get_letter(c,inc--);
         self.name += get_letter(v,inc--);
         self.name += get_letter(c,inc--);
         self.name += 'ar';
@@ -178,7 +184,15 @@ function BattleBarFighter(codebar) {
     };
 
     this.displayCodeBar = function(div){
-        document.getElementById(div).innerHTML =this.stringNumber+'<div id="name">'+this.name+'</div><div id="PV">VIE: '+this.PV+'/'+maxPV+'</div><div id="FO">FORCE: '+this.FO+'/'+maxFO+'</div><div id="ARMOR">ARMURE: '+this.ARMOR+'/'+maxARMOR+'</div><div>type : '+type[this.type]+'</div>';
+        if(this.type==type_caractere){
+            document.getElementById(div).innerHTML =this.stringNumber+'<div id="name">'+this.name+'</div><div id="PV">VIE: '+this.PV+'/'+maxPV+'</div><div id="FO">DEGAT: '+this.FO+'/'+maxFO+'</div><div id="ARMOR">ARMURE: '+this.ARMOR+'/'+maxARMOR+'</div>';
+        }
+        else if(this.type==type_arme){
+            document.getElementById(div).innerHTML = this.stringNumber+'<div id="name">Epée</div><div id="FO">DEGAT: +'+this.FO+'</div>';
+        }
+        else{
+            document.getElementById(div).innerHTML = this.stringNumber+'<div id="name">Armure</div><div id="ARMOR">ARMURE: +'+this.ARMOR+'</div>';
+        }
     };
 
 }
