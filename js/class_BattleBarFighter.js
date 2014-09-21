@@ -13,25 +13,56 @@ function BattleBarFighter(codebar) {
     var self = this;
     var c = ["b","c","d","f","g","h","j","k","l","m","n","p","r","s","t","v","w","x","y","z"];
     var v =["a","i","e","o","u"];
-    var type_caractere =2;
-    var type_arme=1;
-    var type_armure=0;
-    var type = ["armure","glaive","personnage"];
+    var type_legat = 5;
+    var type_centurion =4;
+    var type_decurion =3;
+    var type_legionnaire =2;
+    var type_glaive=1;
+    var type_lorica_segmentata=0;
+    var type_lorica_hamata=6;
+    var type_pugio=7;
+    var type = ["Lorica segmentata","Glaive","Legionnaire","Decurion","Centurion","Legat","Lorica hamata","Pugio"];
 
     generate_PV();
     generate_FO();
     generate_ARMOR();
+    setType();
     generate_roman_name();
-    this.type = getType();
 
-    function getType(){
+
+    function setType(){
+
+        var sumMax = maxARMOR+maxFO+maxPV;
+        var sumCaract = self.ARMOR+self.FO+self.PV;
+        var grade_decurion = sumMax*50/100;
+        var grade_centurion = sumMax*70/100;
+        var grade_legat = sumMax*85/100;
+
+        self.type = type_legionnaire;
+
+        if (sumCaract>= grade_legat ){
+            self.type=type_legat;
+        }else if (sumCaract>= grade_centurion ){
+            self.type = type_centurion;
+        }else if(sumCaract>=grade_decurion){
+            self.type = type_decurion;
+        }
+
         if(self.PV<2000){
-            return type_armure;
+            if(self.ARMOR<1000){
+                self.type = type_lorica_hamata;
+            }else{
+                self.type = type_lorica_segmentata;
+            }
         }
-        if(self.FO<1000){
-            return type_arme;
+
+        if(self.FO<500){
+            self.type = type_pugio;
         }
-        return type_caractere;
+        else if(self.FO<1000){
+            self.type = type_glaive;
+        }
+
     }
 
 
@@ -82,29 +113,33 @@ function BattleBarFighter(codebar) {
 
     function get_picture(){
 
-        var sumMax = maxARMOR+maxFO+maxPV;
-        var sumCaract = self.ARMOR+self.FO+self.PV;
-        var grade_decurion = sumMax*50/100;
-        var grade_centurion = sumMax*70/100;
-        var grade_legat = sumMax*85/100;
+       switch(self.type){
+           case type_glaive:
+               return 'img/glaive.jpg';
+           break;
+           case type_pugio:
+               return 'img/pugio.jpg';
+               break;
+           case type_lorica_segmentata:
+               return 'img/lorica_segmentata.jpg';
+           break;
+           case type_lorica_hamata:
+               return 'img/lorica_hamata.jpg';
+               break;
+           case type_centurion:
+               return 'img/centurion.jpg'
+           break;
+           case type_decurion:
+               return 'img/decurion.jpg'
+           break;
+           case type_legat:
+               return 'img/legat.jpg';
+           break;
+           case type_legionnaire:
+               return 'img/legionnaire.jpg';
+           break;
+       }
 
-        if(self.PV<2000){
-            return 'img/armure.jpg';
-        }
-        if(self.FO<1000){
-            return 'img/glaive.jpg';
-        }
-
-        if (sumCaract>= grade_legat ){
-            return 'img/legat.jpg';
-        }else if (sumCaract>= grade_centurion ){
-            return 'img/centurion.jpg';
-        }else if(sumCaract>=grade_decurion){
-            return 'img/decurion.jpg'
-        }
-
-
-        return 'img/legionnaire.jpg';
     }
 
 
@@ -114,17 +149,9 @@ function BattleBarFighter(codebar) {
         var grade_decurion = sumMax*50/100;
         var grade_centurion = sumMax*70/100;
         var grade_legat = sumMax*85/100;
-        self.name='Legionnaire ';
-        if (sumCaract>= grade_legat ){
-            self.name= 'Legat ';
-        }else if (sumCaract>= grade_centurion ){
-            self.name= 'Centurion ';
-        }else if(sumCaract>=grade_decurion){
-            self.name= 'Decurion ';
-        }
-
-
         var inc = self.stringNumber.length-1;
+
+        self.name = type[self.type]+' ';
 
         if(parseInt(self.stringNumber[inc])%5==0){
             self.name += get_letter(c,inc--).toUpperCase();
@@ -152,7 +179,6 @@ function BattleBarFighter(codebar) {
             self.name += get_letter(c,inc--);
             self.name += 'ius ';
         }
-
 
         if(parseInt(self.stringNumber[inc])%3==0){
             self.name += get_letter(c,inc--).toUpperCase();
@@ -201,9 +227,6 @@ function BattleBarFighter(codebar) {
             self.name += get_letter(c,inc--);
             self.name += 'us';
         }
-
-
-
     }
 
     this.save = function(){
@@ -211,14 +234,14 @@ function BattleBarFighter(codebar) {
     };
 
     this.displayCodeBar = function(div){
-        if(this.type==type_caractere){
-            document.getElementById(div).innerHTML =this.stringNumber+'<div id="picture"><img id="picture" src="'+get_picture()+'" /></div><div id="name">'+this.name+'</div><div id="PV">VIE: '+this.PV+'/'+maxPV+'</div><div id="FO">DEGAT: '+this.FO+'/'+maxFO+'</div><div id="ARMOR">ARMURE: '+this.ARMOR+'/'+maxARMOR+'</div>';
-        }
-        else if(this.type==type_arme){
-            document.getElementById(div).innerHTML = this.stringNumber+'<div id="picture"><img id="picture" src="'+get_picture()+'" /></div><div id="name">Epée</div><div id="FO">DEGAT: +'+this.FO+'</div>';
+        if(this.type==type_lorica_segmentata || this.type==type_lorica_hamata){
+            document.getElementById(div).innerHTML = this.stringNumber+'<div id="picture"><img id="picture" src="'+get_picture()+'" /></div><div id="name">'+type[this.type]+'</div><div id="ARMOR">ARMURE: +'+this.ARMOR+'</div>';
+         }
+        else if(this.type==type_glaive || this.type==type_pugio){
+            document.getElementById(div).innerHTML = this.stringNumber+'<div id="picture"><img id="picture" src="'+get_picture()+'" /></div><div id="name">'+type[this.type]+'</div><div id="FO">DEGAT: +'+this.FO+'</div>';
         }
         else{
-            document.getElementById(div).innerHTML = this.stringNumber+'<div id="picture"><img id="picture" src="'+get_picture()+'" /></div><div id="name">Armure</div><div id="ARMOR">ARMURE: +'+this.ARMOR+'</div>';
+            document.getElementById(div).innerHTML =this.stringNumber+'<div id="picture"><img id="picture" src="'+get_picture()+'" /></div><div id="name">'+this.name+'</div><div id="PV">VIE: '+this.PV+'</div><div id="FO">DEGAT: '+this.FO+'</div><div id="ARMOR">ARMURE: '+this.ARMOR+'</div>';
         }
     };
 
