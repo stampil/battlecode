@@ -5,12 +5,29 @@ input[type="button"]{
     border:1px solid black;
     border-radius: 10px;
 }
-#PV, #FO, #name{
+#PV, #FO,#ARMOR, #name{
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-family: "Courier New";
 }
 
 #name{
-    color:midnightblue;
+    font-size: 1.2em;
+    color:whitesmoke;
+    background-color:darkslategrey ;
+    width:100px;
+    padding:10px;
+    margin:20px 0;
+}
+
+#PV{
+    color: green;
+}
+
+#FO{
+    color:orangered;
+}
+
+#ARMOR{
+    color:lightsteelblue;
 }
