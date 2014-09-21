@@ -9,7 +9,7 @@ if(typeof cordova =='undefined'){
 
     cordova.plugins.barcodeScanner.scan = function(){
         document.getElementById('ret').textContent='Scan non disponible';
-        var BBF = new BattleBarFighter({text:3020122873136,format:1});
+        var BBF = new BattleBarFighter({text:Math.round((Math.random()*1000000000000)+1000000000000).toString(),format:1});
         BBF.displayCodeBar('ret');
     }
 }
