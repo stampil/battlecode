@@ -6,45 +6,67 @@ input[type="button"]{
     border-radius: 10px;
     cursor:pointer;
 }
-#PV, #FO,#ARMOR, #name{
+.PV, .FO,.ARMOR{
     font-weight: bold;
-    font-size: 1.1em;
-    font-family: "Courier New";
+    font-size: 10pt;
+    font-family: "monospace";
+
 }
 
-#name{
-    font-size: 1.2em;
-    color:whitesmoke;
-    background-color:darkslategrey ;
-    width:200px;
-    padding:10px;
-    margin:20px 0;
-    text-align: center;
-    height:58px;
-}
 
-#PV{
+
+.PV{
     color: green;
 }
 
-#FO{
+.FO{
     color:orangered;
 }
 
-#ARMOR{
-    color:lightsteelblue;
+.ARMOR{
+    color:darkslategrey;
 }
-#picture{
+.picture{
     max-width: 300px;
     max-height: 300px;
 }
-.content, #scan{
+.content, #scan, #card{
     display:none;
 }
 
-#ARMOR_space{
+.ARMOR_space{
     height:39px;
 }
-#FO_space{
+.FO_space{
     height:20px;
+}
+
+.top{
+    background: url('http://us.cdn2.123rf.com/168nwm/mg1408/mg14081202/mg1408120200002/12583020-texture-de-marbre-beige-haute-resolution.jpg');
+    text-align: center;
+    padding:5px;
+    border-radius: 15px 15px 0 0;
+    text-transform: uppercase;
+    text-shadow: -1px -1px 2px rgba(150, 150, 150, 1);
+}
+.bottom{
+    background: url('http://us.cdn2.123rf.com/168nwm/mg1408/mg14081202/mg1408120200002/12583020-texture-de-marbre-beige-haute-resolution.jpg');
+    text-align: center;
+    padding:5px;
+    border-radius:0 0 15px 15px;
+    text-shadow: -1px -1px 2px rgba(150, 150, 150, 1);
+    max-width: 190px;
+}
+.column{
+    width:15px;
+    background:url('http://us.cdn2.123rf.com/168nwm/mg1408/mg14081202/mg1408120200002/12583020-texture-de-marbre-beige-haute-resolution.jpg');
+}
+
+#card{
+    border:1px solid black;
+    border-radius: 15px;
+    width:200px;
+}
+.VDA{
+    padding:10px;
 }

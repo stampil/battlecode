@@ -28,6 +28,7 @@ function check_save(to_check){
 for (var i = 0; i < menu_buttons.length; i++) {
     menu_buttons[i].onclick = function (e) {
         var clicked = e.srcElement.id;
+        document.getElementById('card').style.display='none';
         document.getElementById("menu").style.display="none";
         document.getElementById("scan").style.display="block";
         document.getElementById("content_"+clicked).style.display="block";  

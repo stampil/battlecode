@@ -164,6 +164,7 @@ function BattleBarFighter(codebar) {
 
 
     function generate_roman_name() {
+        if(self.type != type_character) return false;
         var sumMax = maxARMOR + maxFO + maxPV;
         var sumCaract = self.ARMOR + self.FO + self.PV;
         var grade_decurion = sumMax * 50 / 100;
@@ -171,7 +172,7 @@ function BattleBarFighter(codebar) {
         var grade_legat = sumMax * 85 / 100;
         var inc = self.stringNumber.length - 1;
 
-        self.name = type[self.type][self.sousType] + ' ';
+        self.name =' ';
 
         if (parseInt(self.stringNumber[inc]) % 5 == 0) {
             self.name += get_letter(c, inc--).toUpperCase();
@@ -206,21 +207,13 @@ function BattleBarFighter(codebar) {
             self.name += get_letter(c, inc--);
             self.name += 'us ';
         }
-        else if (parseInt(self.stringNumber[inc]) % 3 == 1) {
+        else {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
             self.name += get_letter(c, inc--);
             self.name += 'ius ';
         }
-        else {
-            self.name += get_letter(c, inc--).toUpperCase();
-            self.name += get_letter(v, inc--);
-            self.name += get_letter(c, inc--);
-            self.name += get_letter(v, inc--);
-            self.name += get_letter(v, inc--);
-            self.name += get_letter(c, inc--);
-            self.name += 'us ';
-        }
+
 
         if (parseInt(self.stringNumber[inc]) % 4 == 0) {
             self.name += get_letter(c, inc--).toUpperCase();
@@ -239,7 +232,7 @@ function BattleBarFighter(codebar) {
             self.name += get_letter(v, inc--);
             self.name += get_letter(v, inc--);
             self.name += get_letter(c, inc--);
-            self.name += 'ar';
+            self.name += 'ius';
         }
         else {
             self.name += get_letter(c, inc--).toUpperCase();
@@ -254,16 +247,26 @@ function BattleBarFighter(codebar) {
     };
 
     this.displayCodeBar = function () {
-        var el = document.getElementById("scan_type_"+this.type);
-        if (this.type == type_armor) {
-            el.innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + type[this.type][this.sousType] + '</div><div id="ARMOR_space"></div><div id="ARMOR">ARMURE: +' + this.ARMOR + '</div>';
+        document.getElementById('card').style.display='block';
+        document.querySelector('#card .VDA .PV').style.display='block';
+        document.querySelector('#card .VDA .FO').style.display='block';
+        document.querySelector('#card .VDA .ARMOR').style.display='block';
+        document.querySelector('#card .top').textContent = type[this.type][this.sousType];
+        document.querySelector('#card .picture').src=get_picture();
+        document.querySelector('#card .bottom').textContent =this.name;
+        document.querySelector('#card .VDA .PV span').innerHTML =this.PV;
+        document.querySelector('#card .VDA .FO span').innerHTML =this.FO;
+        document.querySelector('#card .VDA .ARMOR span').innerHTML =this.ARMOR;
+        if(this.type==type_armor){
+            document.querySelector('#card .VDA .PV').style.display='none';
+            document.querySelector('#card .VDA .FO').style.display='none';
         }
-        else if (this.type == type_weapon) {
-            el.innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + type[this.type][this.sousType] + '</div><div id="FO_space"></div><div id="FO">DEGAT: +' + this.FO + '</div>';
+        else if(this.type==type_weapon){
+            document.querySelector('#card .VDA .PV').style.display='none';
+            document.querySelector('#card .VDA .ARMOR').style.display='none';
         }
-        else {
-            el.innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + this.name + '</div><div id="PV">VIE: ' + this.PV + '</div><div id="FO">DEGAT: ' + this.FO + '</div><div id="ARMOR">ARMURE: ' + this.ARMOR + '</div>';
-        }
+
     };
+
 
 }
