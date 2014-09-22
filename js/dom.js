@@ -34,7 +34,7 @@ for (var i = 0; i < menu_buttons.length; i++) {
         document.getElementById("content_"+clicked).style.display="block";  
 
         if(clicked=="player_1"){
-            check_save([type_character, type_armor, type_weapon]);
+            check_save([type_character]); //, type_armor, type_weapon
         }
     };
 }
