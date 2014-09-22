@@ -23,28 +23,12 @@ function BattleBarFighter(codebar) {
         ["Lorica hamata", "Lorica segmentata"]
     ];
 
-    var type_character = 0;
-    var type_weapon = 1;
-    var type_armor = 2;
-
-    var sstype_legionnaire = 0;
-    var sstype_decurion = 1;
-    var sstype_centurion = 2;
-    var sstype_legat = 3;
-
-    var sstype_glaive = 0;
-    var sstype_pugio = 1;
-
-    var sstype_lorica_hamata = 0;
-    var sstype_lorica_segmentata = 1;
-
-
     generate_PV();
     generate_FO();
     generate_ARMOR();
     setType();
 
-    var cookie = new Cookie('codebar_' + this.type, this.stringNumber);
+    var cookie = new Cookie('codebar_' + this.type, JSON.stringify(codebar));
     generate_roman_name();
 
 
@@ -269,15 +253,16 @@ function BattleBarFighter(codebar) {
         ajax('setCodeBar.php', 'result=' + this.codebar.text + '&format=' + this.codebar.format + '&id_gsm=123', 'cb_set_code_bar');
     };
 
-    this.displayCodeBar = function (div) {
+    this.displayCodeBar = function () {
+        var el = document.getElementById("scan_type_"+this.type);
         if (this.type == type_armor) {
-            document.getElementById(div).innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + type[this.type][this.sousType] + '</div><div id="ARMOR">ARMURE: +' + this.ARMOR + '</div>';
+            el.innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + type[this.type][this.sousType] + '</div><div id="ARMOR">ARMURE: +' + this.ARMOR + '</div>';
         }
         else if (this.type == type_weapon) {
-            document.getElementById(div).innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + type[this.type][this.sousType] + '</div><div id="FO">DEGAT: +' + this.FO + '</div>';
+            el.innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + type[this.type][this.sousType] + '</div><div id="FO">DEGAT: +' + this.FO + '</div>';
         }
         else {
-            document.getElementById(div).innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + this.name + '</div><div id="PV">VIE: ' + this.PV + '</div><div id="FO">DEGAT: ' + this.FO + '</div><div id="ARMOR">ARMURE: ' + this.ARMOR + '</div>';
+            el.innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + this.name + '</div><div id="PV">VIE: ' + this.PV + '</div><div id="FO">DEGAT: ' + this.FO + '</div><div id="ARMOR">ARMURE: ' + this.ARMOR + '</div>';
         }
     };
 

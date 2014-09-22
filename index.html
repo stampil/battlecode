@@ -1,32 +1,70 @@
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
 
-    <title>battlecode</title>
-    <meta charset="utf-8"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" href="css/main.css"/>
-    <script type="text/javascript" src="js/class_Cookie.js"></script>
-    <script type="text/javascript" src="js/query_callback.js"></script>
-    <script type="text/javascript" src="js/class_BattleBarFighter.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-    
-</head>
+        <title>battlecode</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="stylesheet" href="css/main.css"/>
+        <script type="text/javascript" src="js/globals.js"></script>
+        <script type="text/javascript" src="js/class_Cookie.js"></script>
+        <script type="text/javascript" src="js/query_callback.js"></script>
+        <script type="text/javascript" src="js/class_BattleBarFighter.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
 
-
-<body>
-<h1>V0.1.0</h1>
+    </head>
 
 
-<input type="button" value="scan" id="scan_button" />
+    <body>
 
-<div id="ret"></div>
-<div id="ret2"></div>
+        <div id="title">
+            <input type="button" value="Battle codebar legion" id="title_button" />
+        </div>
 
-<script type="text/javascript" src="js/dom.js"></script>
+        <div id="menu">
+            <input type="button" value="1 joueur" id="player_1" class="menu_button" />
+            <input type="button" value="2 joueurs" id="player_2" class="menu_button" />
+            <input type="button" value="Multi" id="multi" class="menu_button" />
+        </div>
+
+        <div id="content_player_1" class="content">
+            <p>L'empereur césar est mort et en ces temps de troubles, le consul Marc Antoine et Octave, le fils adoptif de césar, se dispute le pouvoir.
+                Sur le champs de bataille s'affrontes des romains contre des romains.
+            <p>Vous avez pretez allégeance à Octave.
+            <p>Scanner un combattant Romain, et affronter les legionnaires Romains de Marc Antoine...
+            <p>
+            <p>Vous pouvez scanner 1 personnage, 1 arme et 1 armure.
+
+        </div>
+        <div id="content_player_2" class="content">
+            WIP
+        </div>
+        <div id="content_multi" class="content">
+            WIP
+        </div>
+
+        <div id="scan">
+            <input type="button" value="scan" id="scan_button" />
+            <input type="button" value="Commencer la partie" id="start_button" />
+        </div>
+
+        <div id="ret"></div>
+
+        <table>
+            <tr>
+                <td id="scan_type_0"></td>
+                <td id="scan_type_1"></td>
+                <td id="scan_type_2"></td>
+            </tr>
+        </table>
+
+
+
+        <script type="text/javascript" src="js/dom.js"></script>
+    <h7>V0.1.1</h7>
 </body>
 </html>

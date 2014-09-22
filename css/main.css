@@ -1,9 +1,10 @@
 input[type="button"]{
     width:80%;
     padding:10px;
-    margin:35px;
+    margin:10px;
     border:1px solid black;
     border-radius: 10px;
+    cursor:pointer;
 }
 #PV, #FO,#ARMOR, #name{
     font-weight: bold;
@@ -35,4 +36,7 @@ input[type="button"]{
 #picture{
     max-width: 300px;
     max-height: 300px;
+}
+.content, #scan{
+    display:none;
 }

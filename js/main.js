@@ -8,9 +8,9 @@ if(typeof cordova =='undefined'){
     }
 
     cordova.plugins.barcodeScanner.scan = function(){
-        document.getElementById('ret').textContent='Scan non disponible';
+        //document.getElementById('ret').textContent='Scan non disponible';
         var BBF = new BattleBarFighter({text:Math.round((Math.random()*1000000000000)+1000000000000).toString(),format:1});
-        BBF.displayCodeBar('ret');
+        BBF.displayCodeBar();
     }
 }
 
@@ -25,7 +25,7 @@ function scan(){
             if(result.text) {
                 var BBF = new BattleBarFighter(result);
                 BBF.save();
-                BBF.displayCodeBar('ret');
+                BBF.displayCodeBar();
             }
             else{
                 document.getElementById('ret').textContent='Scanning cancelled';
@@ -42,7 +42,6 @@ function scan(){
 
 
 function ajax(page,param, callback){
-    document.getElementById("ret2").textContent='loading...';
     var head = document.getElementsByTagName('head').item(0);
     var script = document.createElement('script');
     script.setAttribute('type', 'text/javascript');
