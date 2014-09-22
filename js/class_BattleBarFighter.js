@@ -256,10 +256,10 @@ function BattleBarFighter(codebar) {
     this.displayCodeBar = function () {
         var el = document.getElementById("scan_type_"+this.type);
         if (this.type == type_armor) {
-            el.innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + type[this.type][this.sousType] + '</div><div id="ARMOR">ARMURE: +' + this.ARMOR + '</div>';
+            el.innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + type[this.type][this.sousType] + '</div><div id="ARMOR_space"></div><div id="ARMOR">ARMURE: +' + this.ARMOR + '</div>';
         }
         else if (this.type == type_weapon) {
-            el.innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + type[this.type][this.sousType] + '</div><div id="FO">DEGAT: +' + this.FO + '</div>';
+            el.innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + type[this.type][this.sousType] + '</div><div id="FO_space"></div><div id="FO">DEGAT: +' + this.FO + '</div>';
         }
         else {
             el.innerHTML = this.stringNumber + '<div id="picture"><img id="picture" src="' + get_picture() + '" /></div><div id="name">' + this.name + '</div><div id="PV">VIE: ' + this.PV + '</div><div id="FO">DEGAT: ' + this.FO + '</div><div id="ARMOR">ARMURE: ' + this.ARMOR + '</div>';

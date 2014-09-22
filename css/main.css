@@ -20,6 +20,7 @@ input[type="button"]{
     padding:10px;
     margin:20px 0;
     text-align: center;
+    height:58px;
 }
 
 #PV{
@@ -39,4 +40,11 @@ input[type="button"]{
 }
 .content, #scan{
     display:none;
+}
+
+#ARMOR_space{
+    height:38px;
+}
+#FO_space{
+    height:20px;
 }
