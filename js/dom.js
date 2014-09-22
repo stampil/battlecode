@@ -40,6 +40,7 @@ for (var i = 0; i < menu_buttons.length; i++) {
 }
 
 document.getElementById("title_button").onclick = function (e) {
+    document.getElementById('card').style.display='none';
     document.getElementById("menu").style.display="block";
     document.getElementById("scan").style.display="none";
     display_contents("none");

@@ -3,7 +3,7 @@ function BattleBarFighter(codebar) {
     this.PV;
     this.FO;
     this.ARMOR;
-    this.name;
+    this.name ='';
     this.type;
     this.sousType;
 
@@ -172,7 +172,7 @@ function BattleBarFighter(codebar) {
         var grade_legat = sumMax * 85 / 100;
         var inc = self.stringNumber.length - 1;
 
-        self.name =' ';
+        self.name ='';
 
         if (parseInt(self.stringNumber[inc]) % 5 == 0) {
             self.name += get_letter(c, inc--).toUpperCase();
