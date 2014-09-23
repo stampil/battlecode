@@ -247,23 +247,21 @@ function BattleBarFighter(codebar) {
     };
 
     this.displayCodeBar = function () {
-        document.getElementById('card').style.display='block';
-        document.querySelector('#card .VDA .PV').style.display='block';
-        document.querySelector('#card .VDA .FO').style.display='block';
-        document.querySelector('#card .VDA .ARMOR').style.display='block';
-        document.querySelector('#card .top').textContent = type[this.type][this.sousType];
-        document.querySelector('#card .picture').src=get_picture();
-        document.querySelector('#card .bottom').textContent =this.name;
-        document.querySelector('#card .VDA .PV span').innerHTML =this.PV;
-        document.querySelector('#card .VDA .FO span').innerHTML =this.FO;
-        document.querySelector('#card .VDA .ARMOR span').innerHTML =this.ARMOR;
+        console.log('display',this.type);
+        document.getElementById('card_'+this.type).style.display='block';
+        document.querySelector('#card_'+this.type+' .top').textContent = type[this.type][this.sousType];
+        document.querySelector('#card_'+this.type+' .picture').src=get_picture();
+        if(this.name) document.querySelector('#card_'+this.type+' .bottom').textContent =this.name;
         if(this.type==type_armor){
-            document.querySelector('#card .VDA .PV').style.display='none';
-            document.querySelector('#card .VDA .FO').style.display='none';
+            document.querySelector('#card_'+this.type+' .VDA .ARMOR span').innerHTML ='+'+this.ARMOR;
         }
         else if(this.type==type_weapon){
-            document.querySelector('#card .VDA .PV').style.display='none';
-            document.querySelector('#card .VDA .ARMOR').style.display='none';
+            document.querySelector('#card_'+this.type+' .VDA .FO span').innerHTML ='+'+this.FO;
+        }
+        else{
+            document.querySelector('#card_'+this.type+' .VDA .PV span').innerHTML =this.PV;
+            document.querySelector('#card_'+this.type+' .VDA .FO span').innerHTML =this.FO;
+            document.querySelector('#card_'+this.type+' .VDA .ARMOR span').innerHTML =this.ARMOR;           
         }
 
     };

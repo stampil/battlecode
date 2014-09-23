@@ -30,15 +30,18 @@ input[type="button"]{
     max-width: 300px;
     max-height: 300px;
 }
-.content, #scan, #card{
+.content, #scan{
     display:none;
 }
 
 .ARMOR_space{
-    height:39px;
+    height:30px;
 }
 .FO_space{
-    height:20px;
+    height:15px;
+}
+.FO_space2{
+    height:17px;
 }
 
 .top{
@@ -63,10 +66,11 @@ input[type="button"]{
     background:url('../img/texture_marbre.jpg');
 }
 
-#card{
+#card_0, #card_1, #card_2{
     border:1px solid black;
     border-radius: 15px;
     width:200px;
+    display:none;
 }
 .VDA{
     padding:10px;
