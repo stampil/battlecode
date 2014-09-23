@@ -30,19 +30,14 @@ input[type="button"]{
     max-width: 300px;
     max-height: 300px;
 }
+.picture_equipement{
+    width:164px;
+    height:100px;
+}
 .content, #scan{
     display:none;
 }
 
-.ARMOR_space{
-    height:30px;
-}
-.FO_space{
-    height:15px;
-}
-.FO_space2{
-    height:17px;
-}
 
 .top{
     background: url('../img/texture_marbre.jpg');
