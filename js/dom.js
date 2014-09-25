@@ -5,6 +5,14 @@ document.getElementById("scan_button").onclick = function (e) {
 
 var menu_buttons = document.getElementsByClassName("menu_button");
 var all_contents = document.getElementsByClassName("content");
+var width = document.body.clientWidth;
+var height = document.body.clientHeight;
+
+var all_buttons = document.querySelectorAll('input[type="button"]');
+console.log(all_buttons);
+for ( var i=0; i< all_buttons.length; i++){
+    all_buttons[i].style.width=(width-20)+'px';
+}
 
 function display_contents(value) {
     for (var i = 0; i < all_contents.length; i++) {
