@@ -12,9 +12,6 @@ input[type="button"]{
     font-family: "monospace";
 
 }
-
-
-
 .PV{
     color: green;
 }
@@ -69,4 +66,8 @@ input[type="button"]{
 }
 .VDA{
     padding:10px;
+}
+
+.content p{
+    text-align: justify;
 }
