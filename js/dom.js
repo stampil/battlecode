@@ -81,6 +81,7 @@ document.getElementById("td_ennemi").onclick = function(){
         document.getElementById('img_player_1').classList.add('blink');
         player_1.fight(fight_defense);
     }
+    return false;
 }
 
 document.getElementById("td_player_1").onclick = function(){
@@ -91,5 +92,6 @@ document.getElementById("td_player_1").onclick = function(){
         document.getElementById('img_player_1').classList.remove('blink');
         player_1.fight(fight_attack);
     }
+    return false;
 }
 
