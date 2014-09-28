@@ -355,7 +355,7 @@ function BattleBarFighter(codebar) {
 
             document.getElementById("valeur_jauge").style.width = interval_start_percent + "%";
             document.getElementById("label_jauge").textContent = result_click_fight;
-        }, 1);
+        }, 7);
 
 
         return true;

@@ -73,7 +73,7 @@ input[type="button"]{
 }
 
 #jauge{
-    width:407px;
+    width:200px;
     height: 30px;
     border:1px solid black;
     border-radius: 5px;
