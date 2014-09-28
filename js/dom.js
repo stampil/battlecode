@@ -9,7 +9,7 @@ var width = document.body.clientWidth;
 var height = document.body.clientHeight;
 
 var all_buttons = document.querySelectorAll('input[type="button"]');
-console.log(all_buttons);
+
 for ( var i=0; i< all_buttons.length; i++){
     all_buttons[i].style.width=(width-20)+'px';
 }
@@ -23,11 +23,14 @@ function display_contents(value) {
 function check_save(to_check) {
     for (var i = 0; i < to_check.length; i++) {
         var check_cookie = cookie.get('codebar_' + to_check[i]);
-        console.log('codebar_' + to_check[i]);
+
         if (check_cookie) {
             document.getElementById('start_button').value = 'Continuer la partie';
             var BBF = new BattleBarFighter(JSON.parse(check_cookie));
             BBF.displayCodeBar();
+            if(BBF.type==type_character){
+                player_1 = BBF;
+            }
         }
     }
 }
@@ -58,4 +61,16 @@ document.getElementById("title_button").onclick = function (e) {
     display_contents("none");
 
 };
+
+document.getElementById("start_button").onclick = function(){
+    if(player_1){
+        player_1.fight();
+    }
+}
+
+document.getElementById("valeur_jauge").onclick = function(){
+    if(player_1){
+        player_1.attack();
+    }
+}
 

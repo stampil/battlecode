@@ -13,8 +13,13 @@ function BattleBarFighter(codebar) {
     var maxFO = 4000;
     var maxARMOR = 2500;
     var self = this;
-    var c = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "r", "s", "t", "v", "w", "x", "y", "z"];
-    var v = ["a", "i", "e", "o", "u"];
+    var c = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "r", "s", "t", "v", "w", "x", "z"];
+    var cc=["st","rp","bd","cc","ll","mn","pl","ch"];
+    var v = ["a", "i", "e", "o", "u","y"];
+
+    var interval = null;
+    var interval_start_percent = 0;
+    var interval_inc=1;
 
 
     var type = [
@@ -174,43 +179,81 @@ function BattleBarFighter(codebar) {
 
         self.name ='';
 
-        if (parseInt(self.stringNumber[inc]) % 5 == 0) {
+        if (parseInt(self.stringNumber[inc]) % 8 == 0) {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
             self.name += get_letter(v, inc--);
             self.name += get_letter(c, inc--);
             self.name += 'ius ';
         }
-        else if (parseInt(self.stringNumber[inc]) % 5 == 1) {
+        else if (parseInt(self.stringNumber[inc]) % 8 == 1) {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
             self.name += get_letter(v, inc--);
             self.name += get_letter(c, inc--);
             self.name += 'us ';
         }
-        else if (parseInt(self.stringNumber[inc]) % 5 == 2) {
+        else if (parseInt(self.stringNumber[inc]) % 8 == 2) {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
             self.name += get_letter(c, inc--);
             self.name += 'us ';
         }
-        else {
+        else if (parseInt(self.stringNumber[inc]) % 8 == 3)  {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
             self.name += get_letter(c, inc--);
+            self.name += 'ius ';
+        }
+        else if (parseInt(self.stringNumber[inc]) % 8 == 4)  {
+            self.name += get_letter(c, inc--).toUpperCase();
+            self.name += get_letter(v, inc--);
+            self.name += get_letter(cc, inc--);
+            self.name += 'ius ';
+        }
+        else if (parseInt(self.stringNumber[inc]) % 8 == 5)  {
+            self.name += get_letter(c, inc--).toUpperCase();
+            self.name += get_letter(v, inc--);
+            self.name += get_letter(cc, inc--);
+            self.name += 'us ';
+        }
+        else if (parseInt(self.stringNumber[inc]) % 8 == 6)  {
+            self.name += get_letter(c, inc--).toUpperCase();
+            self.name += get_letter(v, inc--);
+            self.name += get_letter(v, inc--);
+            self.name += get_letter(cc, inc--);
+            self.name += 'us ';
+        }
+        else{
+            self.name += get_letter(c, inc--).toUpperCase();
+            self.name += get_letter(v, inc--);
+            self.name += get_letter(v, inc--);
+            self.name += get_letter(cc, inc--);
             self.name += 'ius ';
         }
 
-        if (parseInt(self.stringNumber[inc]) % 3 == 0) {
+        if (parseInt(self.stringNumber[inc]) % 4 == 0) {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
             self.name += get_letter(c, inc--);
             self.name += 'us ';
         }
-        else {
+        else if (parseInt(self.stringNumber[inc]) % 4 == 1) {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
             self.name += get_letter(c, inc--);
+            self.name += 'ius ';
+        }
+        else if (parseInt(self.stringNumber[inc]) % 4 == 2) {
+            self.name += get_letter(c, inc--).toUpperCase();
+            self.name += get_letter(v, inc--);
+            self.name += get_letter(cc, inc--);
+            self.name += 'us ';
+        }
+        else {
+            self.name += get_letter(c, inc--).toUpperCase();
+            self.name += get_letter(v, inc--);
+            self.name += get_letter(cc, inc--);
             self.name += 'ius ';
         }
 
@@ -234,6 +277,12 @@ function BattleBarFighter(codebar) {
             self.name += get_letter(c, inc--);
             self.name += 'ius';
         }
+        else if (parseInt(self.stringNumber[inc]) % 4 == 3) {
+            self.name += get_letter(c, inc--).toUpperCase();
+            self.name += get_letter(v, inc--);
+            self.name += get_letter(cc, inc--);
+            self.name += 'ius';
+        }
         else {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
@@ -247,7 +296,6 @@ function BattleBarFighter(codebar) {
     };
 
     this.displayCodeBar = function () {
-        console.log('display',this.type);
         document.getElementById('card_'+this.type).style.display='block';
         document.querySelector('#card_'+this.type+' .top').textContent = type[this.type][this.sousType];
         document.querySelector('#card_'+this.type+' .picture').src=get_picture();
@@ -265,6 +313,39 @@ function BattleBarFighter(codebar) {
         }
 
     };
+
+
+    this.fight = function(){
+        if(this.type != type_character){
+            return false;
+        }
+        document.getElementById('scan').style.display="none";
+        document.getElementById('content_player_1').style.display="none";
+        document.getElementById('combat').style.display='block';
+        interval = setInterval(function(){
+            console.log(interval_start_percent,interval_inc);
+            if(interval_start_percent>=100){
+                interval_inc = -1;
+            }
+            if(interval_start_percent<=0){
+                interval_inc = 1;
+            }
+            interval_start_percent+=interval_inc;
+            document.getElementById("valeur_jauge").style.width=interval_start_percent+"%";
+        },5);
+
+
+
+        return true;
+    }
+
+    this.attack = function(){
+        clearInterval(interval);
+        interval = null;
+        console.log(interval_start_percent);
+        degat = Math.round(this.FO*interval_start_percent/100);
+        alert('degat : '+degat);
+    }
 
 
 }
