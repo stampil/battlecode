@@ -73,7 +73,7 @@ document.getElementById("start_button").onclick = function(){
     }
 }
 
-document.getElementById("img_ennemi").onclick = function(){
+document.getElementById("td_ennemi").onclick = function(){
     if(player_1){
         player_1.click_fight();
 
@@ -83,7 +83,7 @@ document.getElementById("img_ennemi").onclick = function(){
     }
 }
 
-document.getElementById("img_player_1").onclick = function(){
+document.getElementById("td_player_1").onclick = function(){
     if(player_1){
         player_1.click_fight();
 
