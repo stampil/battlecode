@@ -320,9 +320,7 @@ function BattleBarFighter(codebar) {
         if(this.type != type_character){
             return false;
         }
-        document.getElementById('scan').style.display="none";
-        document.getElementById('content_player_1').style.display="none";
-        document.getElementById('combat').style.display='block';
+
         var type_use = this.FO;
         if(type_fight==fight_attack){
             document.getElementById("valeur_jauge").className="attack";
@@ -356,7 +354,7 @@ function BattleBarFighter(codebar) {
         clearInterval(interval);
         interval = null;
 
-        alert('res : '+result_click_fight);
+        //alert('res : '+result_click_fight);
     }
 
 

@@ -58,7 +58,7 @@ input[type="button"]{
     background:url('../img/texture_marbre.jpg');
 }
 
-#card_0, #card_1, #card_2{
+#card_0, #card_1, #card_2, #card_ennemi{
     border:1px solid black;
     border-radius: 15px;
     width:200px;
@@ -73,11 +73,12 @@ input[type="button"]{
 }
 
 #jauge{
-    width:400px;
+    width:407px;
     height: 30px;
     border:1px solid black;
     border-radius: 5px;
     background-color: gray;
+    margin:3px;
 }
 #valeur_jauge{
     width:10%;
@@ -98,4 +99,225 @@ input[type="button"]{
     position: relative;
     top: -28px;
     font-weight: bold;
+}
+
+.flip{
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+.click_attack{
+    background: url('../img/click_attack.png') no-repeat 10px #4c3621;
+    cursor:pointer;
+}
+.click_defense{
+    background: url('../img/click_defense.png') no-repeat 10px #4c3621;
+    cursor:pointer;
+}
+
+
+
+@-webkit-keyframes blink {
+    0% {
+        opacity:1
+    }
+    50% {
+        opacity:0
+    }
+    100% {
+        opacity:1
+    }
+}
+@-moz-keyframes blink {
+    0% {
+        opacity:1
+    }
+    50% {
+        opacity:0
+    }
+    100% {
+        opacity:1
+    }
+}
+@-webkit-keyframes fadefromlow {
+    0% {
+        opacity:0.3
+    }
+    50% {
+        opacity:1
+    }
+    100% {
+        opacity:0.3
+    }
+}
+@-moz-keyframes fadefromlow {
+    0% {
+        opacity:0.3
+    }
+    50% {
+        opacity:1
+    }
+    100% {
+        opacity:0.3
+    }
+}
+@-webkit-keyframes fadefromhight {
+    0% {
+        opacity:1
+    }
+    50% {
+        opacity:0.3
+    }
+    100% {
+        opacity:1
+    }
+}
+@-moz-keyframes fadefromhight {
+    0% {
+        opacity:1
+    }
+    50% {
+        opacity:0.3
+    }
+    100% {
+        opacity:1
+    }
+}
+@keyframes fadefromhight {
+    0% {
+        opacity:1
+    }
+    50% {
+        opacity:0.3
+    }
+    100% {
+        opacity:1
+    }
+}
+@-moz-keyframes grow {
+    0% {
+        -moz-transform:scale(0.9);
+        transform:scale(0.9);
+        opacity:0.2
+    }
+    50% {
+        -moz-transform:scale(1);
+        transform:scale(1);
+        opacity:1
+    }
+    100% {
+        -moz-transform:scale(0.9);
+        transform:scale(0.9);
+        opacity:0.2
+    }
+}
+@-webkit-keyframes grow {
+    0% {
+        -webkit-transform:scale(0.9);
+        transform:scale(0.9);
+        opacity:0.2
+    }
+    50% {
+        -webkit-transform:scale(1);
+        transform:scale(1);
+        opacity:1
+    }
+    100% {
+        -webkit-transform:scale(0.9);
+        transform:scale(0.9);
+        opacity:0.2
+    }
+}
+@keyframes grow {
+    0% {
+        transform:scale(0.9);
+        opacity:0.2
+    }
+    50% {
+        transform:scale(1);
+        opacity:1
+    }
+    100% {
+        transform:scale(0.9);
+        opacity:0.2
+    }
+}
+@-webkit-keyframes fadeIn {
+    from {
+        opacity:0
+    }
+    to {
+        opacity:1
+    }
+}
+@-moz-keyframes fadeIn {
+    from {
+        opacity:0
+    }
+    to {
+        opacity:1
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity:0
+    }
+    to {
+        opacity:1
+    }
+}
+.blink {
+    -webkit-transition:all 1s ease-in-out;
+    -moz-transition:all 1s ease-in-out;
+    -o-transition:all 1s ease-in-out;
+    -ms-transition:all 1s ease-in-out;
+    transition:all 1s ease-in-out;
+    -webkit-animation-direction:normal;
+    -webkit-animation-duration:2s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-name:blink;
+    -webkit-animation-timing-function:ease-in-out;
+    -moz-animation-direction:normal;
+    -moz-animation-duration:2s;
+    -moz-animation-iteration-count:infinite;
+    -moz-animation-name:blink;
+    -moz-animation-timing-function:ease-in-out
+}
+.medium-blink {
+    -webkit-transition:all 0.05s ease-in-out;
+    -moz-transition:all 0.05s ease-in-out;
+    -o-transition:all 0.05s ease-in-out;
+    -ms-transition:all 0.05s ease-in-out;
+    transition:all 0.05s ease-in-out;
+    -webkit-animation-direction:normal;
+    -webkit-animation-duration:0.3s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-name:blink;
+    -webkit-animation-timing-function:ease-in-out;
+    -moz-animation-direction:normal;
+    -moz-animation-duration:0.3s;
+    -moz-animation-iteration-count:infinite;
+    -moz-animation-name:blink;
+    -moz-animation-timing-function:ease-in-out
+}
+.fast-blink {
+    -webkit-transition:all 0.05s ease-in-out;
+    -moz-transition:all 0.05s ease-in-out;
+    -o-transition:all 0.05s ease-in-out;
+    -ms-transition:all 0.05s ease-in-out;
+    transition:all 0.05s ease-in-out;
+    -webkit-animation-direction:normal;
+    -webkit-animation-duration:0.1s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-name:blink;
+    -webkit-animation-timing-function:ease-in-out;
+    -moz-animation-direction:normal;
+    -moz-animation-duration:0.1s;
+    -moz-animation-iteration-count:infinite;
+    -moz-animation-name:blink;
+    -moz-animation-timing-function:ease-in-out
 }

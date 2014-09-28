@@ -61,14 +61,33 @@ document.getElementById("title_button").onclick = function (e) {
 document.getElementById("start_button").onclick = function(){
     if(player_1){
         display_contents("none");
+        document.getElementById("cards").style.display = "block";
+        document.getElementById('combat').style.display='block';
+        document.getElementById("card_ennemi").style.display = "block";
+        document.getElementById("card_"+type_armor).style.display = "none";
+        document.getElementById("card_"+type_weapon).style.display = "none";
+
         player_1.fight(fight_attack);
     }
 }
 
-document.getElementById("ennemi").onclick = function(){
+document.getElementById("img_ennemi").onclick = function(){
     if(player_1){
         player_1.click_fight();
+
+        document.getElementById('img_ennemi').classList.remove('blink');
+        document.getElementById('img_player_1').classList.add('blink');
         player_1.fight(fight_defense);
+    }
+}
+
+document.getElementById("img_player_1").onclick = function(){
+    if(player_1){
+        player_1.click_fight();
+
+        document.getElementById('img_ennemi').classList.add('blink');
+        document.getElementById('img_player_1').classList.remove('blink');
+        player_1.fight(fight_attack);
     }
 }
 
