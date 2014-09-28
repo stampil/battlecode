@@ -81,6 +81,7 @@ document.getElementById("start_button").onclick = function () {
 }
 
 document.getElementById("td_ennemi").onclick = function () {
+    document.getElementById("result_fight").innerHTML="";
     if (fight_attack_desactivate){
         console.warn('P2 click desactivated');
         return false;
@@ -88,13 +89,21 @@ document.getElementById("td_ennemi").onclick = function () {
     console.info('P2 click clicked');
     fight_attack_desactivate = true;
     if (player_1) {
-        player_1.click_fight();
-        player_2.click_fight();
+        var res1 = player_1.click_fight();
+        var res2 = player_2.click_fight();
+        console.log('attaque',res1,res2);
         if(timeout_click_fight){
             clearTimeout(timeout_click_fight);
             timeout_click_fight=null;
         }
         document.getElementById('img_ennemi').classList.remove('blink');
+        var degat = res1-res2;
+        if(degat>0){
+            console.log('degat fait',degat);
+            document.getElementById("result_fight").innerHTML="degat fait :<span class='FO'>"+degat+"</span>";
+            player_2.takeDammage(degat);
+            if(player_2.PV<=0) return;
+        }
         timeout_click_fight =setTimeout(function () {
             document.getElementById('img_player_1').classList.add('blink');
             player_1.fight(fight_defense);
@@ -106,6 +115,7 @@ document.getElementById("td_ennemi").onclick = function () {
 }
 
 document.getElementById("td_player_1").onclick = function () {
+    document.getElementById("result_fight").innerHTML="";
     if (fight_defense_desactivate){
         console.warn('P1 click desactivated');
         return false;
@@ -113,13 +123,21 @@ document.getElementById("td_player_1").onclick = function () {
     console.info('P1 click clicked');
     fight_defense_desactivate = true;
     if (player_1) {
-        res1 = player_1.click_fight();
-        res2 = player_2.click_fight();
+        var res1 = player_1.click_fight();
+        var res2 = player_2.click_fight();
+        console.log('defense',res1,res2);
         if(timeout_click_fight){
             clearTimeout(timeout_click_fight);
             timeout_click_fight=null;
         }
         document.getElementById('img_player_1').classList.remove('blink');
+        var degat = res2-res1;
+        if(degat>0){
+            console.log('degat subit',degat);
+            document.getElementById("result_fight").innerHTML="degat subit :<span class='FO'>"+degat+"</span>";
+            player_1.takeDammage(degat);
+            if(player_1.PV<=0) return;
+        }
         timeout_click_fight =setTimeout(function () {
             document.getElementById('img_ennemi').classList.add('blink');
             player_1.fight(fight_attack);

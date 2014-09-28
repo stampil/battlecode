@@ -301,24 +301,35 @@ function BattleBarFighter(codebar) {
         ajax('setCodeBar.php', 'result=' + this.codebar.text + '&format=' + this.codebar.format + '&id_gsm=123', 'cb_set_code_bar');
     };
 
+
+    this.takeDammage = function(nb){
+        this.PV -=nb;
+        this.displayCodeBar();
+    }
+
     this.displayCodeBar = function (where) {
+        if(!this.where){
         if(!where){
-            where ='card_' + this.type;
+            this.where ='card_' + this.type;
         }
-        document.getElementById(where).style.display = 'block';
-        document.querySelector('#'+where + ' .top').textContent = type[this.type][this.sousType];
-        document.querySelector('#'+where+' .picture').src = get_picture();
-        if (this.name) document.querySelector('#'+where+' .bottom').textContent = this.name;
+        else{
+            this.where =where;
+        }
+        }
+        document.getElementById(this.where).style.display = 'block';
+        document.querySelector('#'+this.where + ' .top').textContent = type[this.type][this.sousType];
+        document.querySelector('#'+this.where+' .picture').src = get_picture();
+        if (this.name) document.querySelector('#'+this.where+' .bottom').textContent = this.name;
         if (this.type == type_armor) {
-            document.querySelector('#'+where+' .VDA .ARMOR span').innerHTML = '+' + this.ARMOR;
+            document.querySelector('#'+this.where+' .VDA .ARMOR span').innerHTML = '+' + this.ARMOR;
         }
         else if (this.type == type_weapon) {
-            document.querySelector('#'+where+' .VDA .FO span').innerHTML = '+' + this.FO;
+            document.querySelector('#'+this.where+' .VDA .FO span').innerHTML = '+' + this.FO;
         }
         else {
-            document.querySelector('#'+where+' .VDA .PV span').innerHTML = this.PV;
-            document.querySelector('#'+where+' .VDA .FO span').innerHTML = this.FO;
-            document.querySelector('#'+where+' .VDA .ARMOR span').innerHTML = this.ARMOR;
+            document.querySelector('#'+this.where+' .VDA .PV span').innerHTML = this.PV;
+            document.querySelector('#'+this.where+' .VDA .FO span').innerHTML = this.FO;
+            document.querySelector('#'+this.where+' .VDA .ARMOR span').innerHTML = this.ARMOR;
         }
 
     };
