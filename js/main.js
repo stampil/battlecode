@@ -26,6 +26,9 @@ function scan(){
                 var BBF = new BattleBarFighter(result);
                 BBF.save();
                 BBF.displayCodeBar();
+                if(BBF.type==type_character){
+                    player_1 = BBF;
+                }
             }
             else{
                 document.getElementById('ret').textContent='Scanning cancelled';
