@@ -66,6 +66,8 @@ document.getElementById("start_button").onclick = function(){
         document.getElementById("card_ennemi").style.display = "block";
         document.getElementById("card_"+type_armor).style.display = "none";
         document.getElementById("card_"+type_weapon).style.display = "none";
+        document.getElementById('div_img_ennemi').classList.add('picture_equipement');
+        document.getElementById('div_img_player_1').classList.add('picture_equipement');
 
         player_1.fight(fight_attack);
     }
