@@ -111,11 +111,11 @@ input[type="button"]{
 }
 
 .click_attack{
-    background: url('../img/click_attack.png') no-repeat 21px 15px #4c3621;
+    background: url('../img/click_attack.png') no-repeat 21px 15px buttonface;
     cursor:pointer;
 }
 .click_defense{
-    background: url('../img/click_defense.png') no-repeat 21px 15px #4c3621;
+    background: url('../img/click_defense.png') no-repeat 21px 15px buttonface;
     cursor:pointer;
 }
 

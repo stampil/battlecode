@@ -1,20 +1,25 @@
-if(typeof cordova =='undefined'){
+if (typeof cordova == 'undefined') {
     var cordova = {
-        plugins:{
-            barcodeScanner:{
-                scan:null
+        plugins: {
+            barcodeScanner: {
+                scan: null
             }
         }
     }
 
-    cordova.plugins.barcodeScanner.scan = function(){
+    cordova.plugins.barcodeScanner.scan = function () {
         //document.getElementById('ret').textContent='Scan non disponible';
-        var BBF = new BattleBarFighter({text:Math.round((Math.random()*1000000000000)+1000000000000).toString(),format:1});
-        BBF.displayCodeBar();
+        fake_scan(2);
     }
 }
 
-function scan(){
+function fake_scan(format,where){
+    var BBF = new BattleBarFighter({text: Math.round((Math.random() * 1000000000000) + 1000000000000).toString(), format: format});
+    BBF.displayCodeBar(where);
+    return BBF;
+}
+
+function scan() {
     cordova.plugins.barcodeScanner.scan(
         function (result) {
             /*
@@ -22,32 +27,31 @@ function scan(){
              */
 
 
-            if(result.text) {
+            if (result.text) {
                 var BBF = new BattleBarFighter(result);
                 BBF.save();
                 BBF.displayCodeBar();
-                if(BBF.type==type_character){
+                if (BBF.type == type_character) {
                     player_1 = BBF;
                 }
             }
-            else{
-                document.getElementById('ret').textContent='Scanning cancelled';
+            else {
+                document.getElementById('ret').textContent = 'Scanning cancelled';
             }
 
         },
         function (error) {
             var ret = "Scanning failed: " + error;
-            document.getElementById('ret').textContent=ret;
+            document.getElementById('ret').textContent = ret;
         }
     );
 }
 
 
-
-function ajax(page,param, callback){
+function ajax(page, param, callback) {
     var head = document.getElementsByTagName('head').item(0);
     var script = document.createElement('script');
     script.setAttribute('type', 'text/javascript');
-    script.setAttribute('src', 'http://vps36292.ovh.net/mordu/BATTLECODE/'+page+'?'+param+'&callback='+callback);
+    script.setAttribute('src', 'http://vps36292.ovh.net/mordu/BATTLECODE/' + page + '?' + param + '&callback=' + callback);
     head.appendChild(script);
 }

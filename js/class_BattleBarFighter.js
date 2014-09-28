@@ -3,7 +3,7 @@ function BattleBarFighter(codebar) {
     this.PV;
     this.FO;
     this.ARMOR;
-    this.name ='';
+    this.name = '';
     this.type;
     this.sousType;
 
@@ -14,14 +14,14 @@ function BattleBarFighter(codebar) {
     var maxARMOR = 2500;
     var self = this;
     var c = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "r", "s", "t", "v", "w", "x", "z"];
-    var cc=["st","rp","bd","cc","ll","mn","pl","ch"];
-    var v = ["a", "i", "e", "o", "u","y"];
+    var cc = ["st", "rp", "bd", "cc", "ll", "mn", "pl", "ch"];
+    var v = ["a", "i", "e", "o", "u", "y"];
 
-    var interval = null;
+
     var interval_start_percent = 0;
-    var interval_inc=1;
-    var result_click_fight=0;
-
+    var interval_inc = 1;
+    var result_click_fight = 0;
+    var cookie = {};
 
     var type = [
         ["Legionnaire", "Decurion", "Centurion", "Legat"],
@@ -33,10 +33,15 @@ function BattleBarFighter(codebar) {
     generate_FO();
     generate_ARMOR();
     setType();
+    save();
 
-    var cookie = new Cookie('codebar_' + this.type, JSON.stringify(codebar));
     generate_roman_name();
 
+    function save(){
+        if(codebar.format !=1){
+            cookie = new Cookie('codebar_' + this.type, JSON.stringify(codebar));
+        }
+    }
 
     function setType() {
 
@@ -170,7 +175,7 @@ function BattleBarFighter(codebar) {
 
 
     function generate_roman_name() {
-        if(self.type != type_character) return false;
+        if (self.type != type_character) return false;
         var sumMax = maxARMOR + maxFO + maxPV;
         var sumCaract = self.ARMOR + self.FO + self.PV;
         var grade_decurion = sumMax * 50 / 100;
@@ -178,7 +183,7 @@ function BattleBarFighter(codebar) {
         var grade_legat = sumMax * 85 / 100;
         var inc = self.stringNumber.length - 1;
 
-        self.name ='';
+        self.name = '';
 
         if (parseInt(self.stringNumber[inc]) % 8 == 0) {
             self.name += get_letter(c, inc--).toUpperCase();
@@ -200,32 +205,32 @@ function BattleBarFighter(codebar) {
             self.name += get_letter(c, inc--);
             self.name += 'us ';
         }
-        else if (parseInt(self.stringNumber[inc]) % 8 == 3)  {
+        else if (parseInt(self.stringNumber[inc]) % 8 == 3) {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
             self.name += get_letter(c, inc--);
             self.name += 'ius ';
         }
-        else if (parseInt(self.stringNumber[inc]) % 8 == 4)  {
+        else if (parseInt(self.stringNumber[inc]) % 8 == 4) {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
             self.name += get_letter(cc, inc--);
             self.name += 'ius ';
         }
-        else if (parseInt(self.stringNumber[inc]) % 8 == 5)  {
+        else if (parseInt(self.stringNumber[inc]) % 8 == 5) {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
             self.name += get_letter(cc, inc--);
             self.name += 'us ';
         }
-        else if (parseInt(self.stringNumber[inc]) % 8 == 6)  {
+        else if (parseInt(self.stringNumber[inc]) % 8 == 6) {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
             self.name += get_letter(v, inc--);
             self.name += get_letter(cc, inc--);
             self.name += 'us ';
         }
-        else{
+        else {
             self.name += get_letter(c, inc--).toUpperCase();
             self.name += get_letter(v, inc--);
             self.name += get_letter(v, inc--);
@@ -296,67 +301,72 @@ function BattleBarFighter(codebar) {
         ajax('setCodeBar.php', 'result=' + this.codebar.text + '&format=' + this.codebar.format + '&id_gsm=123', 'cb_set_code_bar');
     };
 
-    this.displayCodeBar = function () {
-        document.getElementById('card_'+this.type).style.display='block';
-        document.querySelector('#card_'+this.type+' .top').textContent = type[this.type][this.sousType];
-        document.querySelector('#card_'+this.type+' .picture').src=get_picture();
-        if(this.name) document.querySelector('#card_'+this.type+' .bottom').textContent =this.name;
-        if(this.type==type_armor){
-            document.querySelector('#card_'+this.type+' .VDA .ARMOR span').innerHTML ='+'+this.ARMOR;
+    this.displayCodeBar = function (where) {
+        if(!where){
+            where ='card_' + this.type;
         }
-        else if(this.type==type_weapon){
-            document.querySelector('#card_'+this.type+' .VDA .FO span').innerHTML ='+'+this.FO;
+        document.getElementById(where).style.display = 'block';
+        document.querySelector('#'+where + ' .top').textContent = type[this.type][this.sousType];
+        document.querySelector('#'+where+' .picture').src = get_picture();
+        if (this.name) document.querySelector('#'+where+' .bottom').textContent = this.name;
+        if (this.type == type_armor) {
+            document.querySelector('#'+where+' .VDA .ARMOR span').innerHTML = '+' + this.ARMOR;
         }
-        else{
-            document.querySelector('#card_'+this.type+' .VDA .PV span').innerHTML =this.PV;
-            document.querySelector('#card_'+this.type+' .VDA .FO span').innerHTML =this.FO;
-            document.querySelector('#card_'+this.type+' .VDA .ARMOR span').innerHTML =this.ARMOR;           
+        else if (this.type == type_weapon) {
+            document.querySelector('#'+where+' .VDA .FO span').innerHTML = '+' + this.FO;
+        }
+        else {
+            document.querySelector('#'+where+' .VDA .PV span').innerHTML = this.PV;
+            document.querySelector('#'+where+' .VDA .FO span').innerHTML = this.FO;
+            document.querySelector('#'+where+' .VDA .ARMOR span').innerHTML = this.ARMOR;
         }
 
     };
 
 
-    this.fight = function(type_fight){
-        if(this.type != type_character){
+    this.fight = function (type_fight) {
+        if (this.type != type_character) {
             return false;
         }
 
         var type_use = this.FO;
-        if(type_fight==fight_attack){
-            document.getElementById("valeur_jauge").className="attack";
+        if (type_fight == fight_attack) {
+            document.getElementById("valeur_jauge").className = "attack";
             type_use = this.FO;
         }
-        else{
-            document.getElementById("valeur_jauge").className="defense";
+        else {
+            document.getElementById("valeur_jauge").className = "defense";
             type_use = this.ARMOR;
         }
-        interval = setInterval(function(){
+        if(interval){
+            clearInterval(interval);
+            interval = null;
+        }
+        interval = setInterval(function () {
 
-            if(interval_start_percent>=100){
+            if (interval_start_percent >= 100) {
                 interval_inc = -1;
             }
-            if(interval_start_percent<=0){
+            if (interval_start_percent <= 0) {
                 interval_inc = 1;
             }
-            interval_start_percent+=interval_inc;
-            result_click_fight = Math.round(type_use*interval_start_percent/100);
+            interval_start_percent += interval_inc;
+            result_click_fight = Math.round(type_use * interval_start_percent / 100);
 
-            document.getElementById("valeur_jauge").style.width=interval_start_percent+"%";
+            document.getElementById("valeur_jauge").style.width = interval_start_percent + "%";
             document.getElementById("label_jauge").textContent = result_click_fight;
-        },1);
-
+        }, 1);
 
 
         return true;
     }
 
-    this.click_fight = function(){
+    this.click_fight = function () {
         clearInterval(interval);
         interval = null;
 
         //alert('res : '+result_click_fight);
     }
-
 
 
 }

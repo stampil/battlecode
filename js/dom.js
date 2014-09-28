@@ -1,4 +1,3 @@
-
 document.getElementById("scan_button").onclick = function (e) {
     scan();
 };
@@ -10,8 +9,8 @@ var height = document.body.clientHeight;
 
 var all_buttons = document.querySelectorAll('input[type="button"]');
 
-for ( var i=0; i< all_buttons.length; i++){
-    all_buttons[i].style.width=(width-20)+'px';
+for (var i = 0; i < all_buttons.length; i++) {
+    all_buttons[i].style.width = (width - 20) + 'px';
 }
 
 function display_contents(value) {
@@ -28,7 +27,7 @@ function check_save(to_check) {
             document.getElementById('start_button').value = 'Continuer la partie';
             var BBF = new BattleBarFighter(JSON.parse(check_cookie));
             BBF.displayCodeBar();
-            if(BBF.type==type_character){
+            if (BBF.type == type_character) {
                 player_1 = BBF;
             }
         }
@@ -40,6 +39,7 @@ for (var i = 0; i < menu_buttons.length; i++) {
     menu_buttons[i].onclick = function (e) {
         var clicked = e.srcElement.id;
         display_contents("none");
+        clearTimeout(timeout_click_fight);
         document.getElementById("menu").style.display = "none";
         document.getElementById("scan").style.display = "block";
         document.getElementById("content_" + clicked).style.display = "block";
@@ -58,39 +58,70 @@ document.getElementById("title_button").onclick = function (e) {
 
 };
 
-document.getElementById("start_button").onclick = function(){
-    if(player_1){
+document.getElementById("start_button").onclick = function () {
+    if (player_1) {
         display_contents("none");
         document.getElementById("cards").style.display = "block";
-        document.getElementById('combat').style.display='block';
+        document.getElementById('combat').style.display = 'block';
         document.getElementById("card_ennemi").style.display = "block";
-        document.getElementById("card_"+type_armor).style.display = "none";
-        document.getElementById("card_"+type_weapon).style.display = "none";
+        document.getElementById("card_" + type_armor).style.display = "none";
+        document.getElementById("card_" + type_weapon).style.display = "none";
         document.getElementById('div_img_ennemi').classList.add('picture_equipement');
         document.getElementById('div_img_player_1').classList.add('picture_equipement');
 
+        do {
+            var ennemi = fake_scan(1,'card_ennemi');
+        }
+        while (ennemi.type != type_character);
+
         player_1.fight(fight_attack);
+        fight_attack_desactivate = false;
     }
 }
 
-document.getElementById("td_ennemi").onclick = function(){
-    if(player_1){
+document.getElementById("td_ennemi").onclick = function () {
+    if (fight_attack_desactivate){
+        console.warn('P2 click desactivated');
+        return false;
+    }
+    console.info('P2 click clicked');
+    fight_attack_desactivate = true;
+    if (player_1) {
         player_1.click_fight();
-
+        if(timeout_click_fight){
+            clearTimeout(timeout_click_fight);
+            timeout_click_fight=null;
+        }
         document.getElementById('img_ennemi').classList.remove('blink');
-        document.getElementById('img_player_1').classList.add('blink');
-        player_1.fight(fight_defense);
+        timeout_click_fight =setTimeout(function () {
+            document.getElementById('img_player_1').classList.add('blink');
+            player_1.fight(fight_defense);
+            fight_defense_desactivate = false;
+        }, 2000)
     }
     return false;
 }
 
-document.getElementById("td_player_1").onclick = function(){
-    if(player_1){
+document.getElementById("td_player_1").onclick = function () {
+    if (fight_defense_desactivate){
+        console.warn('P1 click desactivated');
+        return false;
+    }
+    console.info('P1 click clicked');
+    fight_defense_desactivate = true;
+    if (player_1) {
         player_1.click_fight();
-
-        document.getElementById('img_ennemi').classList.add('blink');
+        if(timeout_click_fight){
+            clearTimeout(timeout_click_fight);
+            timeout_click_fight=null;
+        }
         document.getElementById('img_player_1').classList.remove('blink');
-        player_1.fight(fight_attack);
+        timeout_click_fight =setTimeout(function () {
+            document.getElementById('img_ennemi').classList.add('blink');
+            player_1.fight(fight_attack);
+            fight_attack_desactivate=false;
+        }, 2000);
+
     }
     return false;
 }

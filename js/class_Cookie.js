@@ -1,14 +1,14 @@
 function Cookie(key, value) {
-    
+
     this.set = function (key, value) {
-        
-        if(typeof key!='undefined' && typeof value!='undefined'){
-           
+
+        if (typeof key != 'undefined' && typeof value != 'undefined') {
+
             window.localStorage.setItem(key, value);
         }
     };
-    
-    this.get = function(key){
+
+    this.get = function (key) {
         return window.localStorage.getItem(key);
     }
 
@@ -20,16 +20,16 @@ function Cookie(key, value) {
             window.localStorage.clear();
         }
     };
-    
-    this.list = function(){
+
+    this.list = function () {
         var ret = [];
-        for (var i =0; i< window.localStorage.length; i++){
+        for (var i = 0; i < window.localStorage.length; i++) {
             ret[i] = window.localStorage.key(i);
         }
         return ret;
     };
 
-    this.set(key,value);
+    this.set(key, value);
 
 };
 
