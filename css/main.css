@@ -31,7 +31,7 @@ input[type="button"]{
     width:164px;
     height:100px;
 }
-.content, #scan, #combat{
+.content{
     display:none;
 }
 
@@ -73,15 +73,29 @@ input[type="button"]{
 }
 
 #jauge{
-    width:100%;
+    width:400px;
     height: 30px;
     border:1px solid black;
     border-radius: 5px;
+    background-color: gray;
 }
 #valeur_jauge{
     width:10%;
     height:28px;
     border:1px solid gray;
-    background-color: red;
     border-radius: 5px;
+}
+#valeur_jauge.attack{
+    background-color: orangered;
+}
+#valeur_jauge.defense{
+    background-color: darkslategrey;
+}
+#label_jauge{
+    text-align: center;
+    font-size: 1.5em;
+    color: whitesmoke;
+    position: relative;
+    top: -28px;
+    font-weight: bold;
 }

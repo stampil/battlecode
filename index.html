@@ -47,14 +47,14 @@
             WIP
         </div>
 
-        <div id="scan">
+        <div id="scan" class="content">
             <input type="button" value="scan" id="scan_button" />
             <input type="button" value="Commencer la partie" id="start_button" />
         </div>
 
-        <div id="ret"></div>
+        <div id="ret" class="content"></div>
 
-        <table>
+        <table id="cards"  class="content">
             <tr>
                 <td name="structure" valign="top" rowspan="2">
                     <table id="card_0"  cellspacing=0 align=center>
@@ -119,16 +119,19 @@
 
 
 
-<div id="combat">
-
+<div id="combat" class="content">
+<div>
+    <img src="img/legionnaire.jpg"  id="ennemi" />
+</div>
     <div id="jauge">
-        <div id="valeur_jauge"></div>
+        <div id="valeur_jauge" class="attack"></div>
+        <div id="label_jauge"></div>
     </div>
 </div>
 
 
 
         <script type="text/javascript" src="js/dom.js"></script>
-    <h7>V0.1.3</h7>
+    <h7>V0.1.4</h7>
 </body>
 </html>

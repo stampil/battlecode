@@ -14,3 +14,6 @@
     var sstype_lorica_segmentata = 1;
 
     var player_1 = null;
+
+    var fight_attack=1;
+    var fight_defense=0;

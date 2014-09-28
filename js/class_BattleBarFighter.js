@@ -20,6 +20,7 @@ function BattleBarFighter(codebar) {
     var interval = null;
     var interval_start_percent = 0;
     var interval_inc=1;
+    var result_click_fight=0;
 
 
     var type = [
@@ -315,15 +316,24 @@ function BattleBarFighter(codebar) {
     };
 
 
-    this.fight = function(){
+    this.fight = function(type_fight){
         if(this.type != type_character){
             return false;
         }
         document.getElementById('scan').style.display="none";
         document.getElementById('content_player_1').style.display="none";
         document.getElementById('combat').style.display='block';
+        var type_use = this.FO;
+        if(type_fight==fight_attack){
+            document.getElementById("valeur_jauge").className="attack";
+            type_use = this.FO;
+        }
+        else{
+            document.getElementById("valeur_jauge").className="defense";
+            type_use = this.ARMOR;
+        }
         interval = setInterval(function(){
-            console.log(interval_start_percent,interval_inc);
+
             if(interval_start_percent>=100){
                 interval_inc = -1;
             }
@@ -331,21 +341,24 @@ function BattleBarFighter(codebar) {
                 interval_inc = 1;
             }
             interval_start_percent+=interval_inc;
+            result_click_fight = Math.round(type_use*interval_start_percent/100);
+
             document.getElementById("valeur_jauge").style.width=interval_start_percent+"%";
-        },5);
+            document.getElementById("label_jauge").textContent = result_click_fight;
+        },1);
 
 
 
         return true;
     }
 
-    this.attack = function(){
+    this.click_fight = function(){
         clearInterval(interval);
         interval = null;
-        console.log(interval_start_percent);
-        degat = Math.round(this.FO*interval_start_percent/100);
-        alert('degat : '+degat);
+
+        alert('res : '+result_click_fight);
     }
+
 
 
 }

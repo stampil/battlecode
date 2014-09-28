@@ -39,38 +39,36 @@ function check_save(to_check) {
 for (var i = 0; i < menu_buttons.length; i++) {
     menu_buttons[i].onclick = function (e) {
         var clicked = e.srcElement.id;
-        document.getElementById('card_0').style.display = 'none';
-        document.getElementById('card_1').style.display = 'none';
-        document.getElementById('card_2').style.display = 'none';
+        display_contents("none");
         document.getElementById("menu").style.display = "none";
         document.getElementById("scan").style.display = "block";
         document.getElementById("content_" + clicked).style.display = "block";
 
         if (clicked == "player_1") {
+            document.getElementById("cards").style.display = "block";
             check_save([type_character, type_armor, type_weapon]);
         }
     };
 }
 
 document.getElementById("title_button").onclick = function (e) {
-    document.getElementById('card_0').style.display = 'none';
-    document.getElementById('card_1').style.display = 'none';
-    document.getElementById('card_2').style.display = 'none';
+
     document.getElementById("menu").style.display = "block";
-    document.getElementById("scan").style.display = "none";
     display_contents("none");
 
 };
 
 document.getElementById("start_button").onclick = function(){
     if(player_1){
-        player_1.fight();
+        display_contents("none");
+        player_1.fight(fight_attack);
     }
 }
 
-document.getElementById("valeur_jauge").onclick = function(){
+document.getElementById("ennemi").onclick = function(){
     if(player_1){
-        player_1.attack();
+        player_1.click_fight();
+        player_1.fight(fight_defense);
     }
 }
 
