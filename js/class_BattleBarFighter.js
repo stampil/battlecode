@@ -388,7 +388,7 @@ function BattleBarFighter(codebar) {
         clearInterval(interval);
         interval = null;
 
-        //alert('res : '+result_click_fight);
+      return result_click_fight;
     }
 
 

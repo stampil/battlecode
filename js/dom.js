@@ -113,8 +113,8 @@ document.getElementById("td_player_1").onclick = function () {
     console.info('P1 click clicked');
     fight_defense_desactivate = true;
     if (player_1) {
-        player_1.click_fight();
-        player_2.click_fight();
+        res1 = player_1.click_fight();
+        res2 = player_2.click_fight();
         if(timeout_click_fight){
             clearTimeout(timeout_click_fight);
             timeout_click_fight=null;
@@ -125,7 +125,7 @@ document.getElementById("td_player_1").onclick = function () {
             player_1.fight(fight_attack);
             player_2.fight(fight_defense);
             fight_attack_desactivate=false;
-        }, 2000);
+        }, 3000);
 
     }
     return false;
