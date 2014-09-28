@@ -72,7 +72,7 @@ input[type="button"]{
     text-align: justify;
 }
 
-#jauge{
+#jauge, #jauge2 {
     width:200px;
     height: 30px;
     border:1px solid black;
@@ -80,25 +80,26 @@ input[type="button"]{
     background-color: gray;
     margin:3px;
 }
-#valeur_jauge{
+#valeur_jauge, #valeur_jauge2{
     width:10%;
     height:28px;
     border:1px solid gray;
     border-radius: 5px;
 }
-#valeur_jauge.attack{
-    background-color: orangered;
-}
-#valeur_jauge.defense{
-    background-color: darkslategrey;
-}
-#label_jauge{
+#label_jauge, #label_jauge2{
     text-align: center;
     font-size: 1.5em;
     color: whitesmoke;
     position: relative;
     top: -28px;
     font-weight: bold;
+}
+
+.attack{
+    background-color: orangered;
+}
+.defense{
+    background-color: darkslategrey;
 }
 
 .flip{

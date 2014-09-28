@@ -14,10 +14,12 @@ var sstype_lorica_hamata = 0;
 var sstype_lorica_segmentata = 1;
 
 var player_1 = null;
+var player_2 = null;
 
 var fight_attack = 1;
 var fight_defense = 0;
 var fight_attack_desactivate = true;
 var fight_defense_desactivate = true;
 var timeout_click_fight=null;
-var interval = null;
+var interval_p1 = null;
+var interval_p2 =null;

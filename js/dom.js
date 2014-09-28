@@ -70,11 +70,12 @@ document.getElementById("start_button").onclick = function () {
         document.getElementById('div_img_player_1').classList.add('picture_equipement');
 
         do {
-            var ennemi = fake_scan(1,'card_ennemi');
+           player_2 = fake_scan('IA','card_ennemi');
         }
-        while (ennemi.type != type_character);
+        while (player_2.type != type_character);
 
         player_1.fight(fight_attack);
+        player_2.fight(fight_defense);
         fight_attack_desactivate = false;
     }
 }
@@ -88,6 +89,7 @@ document.getElementById("td_ennemi").onclick = function () {
     fight_attack_desactivate = true;
     if (player_1) {
         player_1.click_fight();
+        player_2.click_fight();
         if(timeout_click_fight){
             clearTimeout(timeout_click_fight);
             timeout_click_fight=null;
@@ -96,6 +98,7 @@ document.getElementById("td_ennemi").onclick = function () {
         timeout_click_fight =setTimeout(function () {
             document.getElementById('img_player_1').classList.add('blink');
             player_1.fight(fight_defense);
+            player_2.fight(fight_attack);
             fight_defense_desactivate = false;
         }, 2000)
     }
@@ -111,6 +114,7 @@ document.getElementById("td_player_1").onclick = function () {
     fight_defense_desactivate = true;
     if (player_1) {
         player_1.click_fight();
+        player_2.click_fight();
         if(timeout_click_fight){
             clearTimeout(timeout_click_fight);
             timeout_click_fight=null;
@@ -119,6 +123,7 @@ document.getElementById("td_player_1").onclick = function () {
         timeout_click_fight =setTimeout(function () {
             document.getElementById('img_ennemi').classList.add('blink');
             player_1.fight(fight_attack);
+            player_2.fight(fight_defense);
             fight_attack_desactivate=false;
         }, 2000);
 
