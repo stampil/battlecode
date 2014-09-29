@@ -78,6 +78,8 @@ document.getElementById("button_attack").onclick = function () {
                 return;
         }
         timeout_click_fight = setTimeout(function () {
+            hide("button_attack");
+            show("button_defense");
             character_player1.fight(fight_defense);
             character_player2.fight(fight_attack);
             fight_defense_desactivate = false;
@@ -111,6 +113,8 @@ document.getElementById("button_defense").onclick = function () {
                 return;
         }
         timeout_click_fight = setTimeout(function () {
+            show("button_attack");
+            hide("button_defense");
             character_player1.fight(fight_attack);
             character_player2.fight(fight_defense);
             fight_attack_desactivate = false;
