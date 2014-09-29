@@ -73,7 +73,7 @@ input[type="button"]{
 }
 
 #jauge, #jauge2 {
-    width:200px;
+    width:163px;
     height: 30px;
     border:1px solid black;
     border-radius: 5px;
@@ -111,21 +111,23 @@ input[type="button"]{
     -ms-filter: "FlipH";
 }
 
-.click_attack{
-    background: url('../img/click_attack.png') no-repeat 21px 15px buttonface;
-    cursor:pointer;
-}
-.click_defense{
-    background: url('../img/click_defense.png') no-repeat 21px 15px buttonface;
-    cursor:pointer;
-}
+
 
 #div_img_player_1, #div_img_ennemi{
     overflow:hidden;
 }
 
-.version{
+#version{
     font-size: 7pt;
-    float:right;
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+}
+
+#button_attack_defense{
+    position:relative;
+    top:2px;
+    left:14px;
+    cursor:pointer;
 }
 
