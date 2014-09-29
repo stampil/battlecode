@@ -33,7 +33,7 @@ document.getElementById("title_button").onclick = function (e) {
 };
 
 document.getElementById("start_button").onclick = function () {
-    if (player_1) {
+    if (character_player1) {
         hideClass("content");
         show("cards", "combat", "card_player2");
         hide("card_" + type_armor, "card_" + type_weapon);
@@ -41,12 +41,12 @@ document.getElementById("start_button").onclick = function () {
         document.getElementById('div_img_player_1').classList.add('picture_equipement');
 
         do {
-            player_2 = fake_scan(2);
+            character_player2 = fake_scan(player2);
         }
-        while (player_2.type !== type_character);
+        while (character_player2.type !== type_character);
 
-        player_1.fight(fight_attack);
-        player_2.fight(fight_defense);
+        character_player1.fight(fight_attack);
+        character_player2.fight(fight_defense);
         fight_attack_desactivate = false;
         show("button_attack");
     }
@@ -60,9 +60,9 @@ document.getElementById("button_attack").onclick = function () {
     }
     console.info('P2 click clicked');
     fight_attack_desactivate = true;
-    if (player_1) {
-        var res1 = player_1.click_fight();
-        var res2 = player_2.click_fight();
+    if (character_player1) {
+        var res1 = character_player1.click_fight();
+        var res2 = character_player2.click_fight();
         console.log('attaque', res1, res2);
         if (timeout_click_fight) {
             clearTimeout(timeout_click_fight);
@@ -73,13 +73,13 @@ document.getElementById("button_attack").onclick = function () {
         if (degat > 0) {
             console.log('degat fait', degat);
             document.getElementById("result_fight").innerHTML = "degat fait :<span class='FO'>" + degat + "</span>";
-            player_2.takeDammage(degat);
-            if (player_2.PV <= 0)
+            character_player2.takeDammage(degat);
+            if (character_player2.PV <= 0)
                 return;
         }
         timeout_click_fight = setTimeout(function () {
-            player_1.fight(fight_defense);
-            player_2.fight(fight_attack);
+            character_player1.fight(fight_defense);
+            character_player2.fight(fight_attack);
             fight_defense_desactivate = false;
         }, 2000);
     }
@@ -94,9 +94,9 @@ document.getElementById("button_defense").onclick = function () {
     }
     console.info('P1 click clicked');
     fight_defense_desactivate = true;
-    if (player_1) {
-        var res1 = player_1.click_fight();
-        var res2 = player_2.click_fight();
+    if (character_player1) {
+        var res1 = character_player1.click_fight();
+        var res2 = character_player2.click_fight();
         console.log('defense', res1, res2);
         if (timeout_click_fight) {
             clearTimeout(timeout_click_fight);
@@ -106,13 +106,13 @@ document.getElementById("button_defense").onclick = function () {
         if (degat > 0) {
             console.log('degat subit', degat);
             document.getElementById("result_fight").innerHTML = "degat subit :<span class='FO'>" + degat + "</span>";
-            player_1.takeDammage(degat);
-            if (player_1.PV <= 0)
+            character_player1.takeDammage(degat);
+            if (character_player1.PV <= 0)
                 return;
         }
         timeout_click_fight = setTimeout(function () {
-            player_1.fight(fight_attack);
-            player_2.fight(fight_defense);
+            character_player1.fight(fight_attack);
+            character_player2.fight(fight_defense);
             fight_attack_desactivate = false;
         }, 3000);
 
