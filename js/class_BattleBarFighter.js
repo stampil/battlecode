@@ -6,6 +6,7 @@ function BattleBarFighter(codebar) {
     this.name = '';
     this.type;
     this.sousType;
+    this.playerNumber
 
     this.stringNumber = codebar.text.toString();
 
@@ -33,13 +34,13 @@ function BattleBarFighter(codebar) {
     generate_FO();
     generate_ARMOR();
     setType();
-    save();
+    toCookie();
 
     generate_roman_name();
 
-    function save(){
-        if(codebar.format !='IA'){
-            cookie = new Cookie('codebar_' + this.type, JSON.stringify(codebar));
+    function ToCookie() {
+        if (self.playerNumber == 1) {
+            cookie = new Cookie('codebar_' + self.type, JSON.stringify(codebar));
         }
     }
 
@@ -175,7 +176,8 @@ function BattleBarFighter(codebar) {
 
 
     function generate_roman_name() {
-        if (self.type != type_character) return false;
+        if (self.type != type_character)
+            return false;
         var sumMax = maxARMOR + maxFO + maxPV;
         var sumCaract = self.ARMOR + self.FO + self.PV;
         var grade_decurion = sumMax * 50 / 100;
@@ -297,39 +299,37 @@ function BattleBarFighter(codebar) {
         }
     }
 
-    this.save = function () {
+    this.toBDD = function () {
         ajax('setCodeBar.php', 'result=' + this.codebar.text + '&format=' + this.codebar.format + '&id_gsm=123', 'cb_set_code_bar');
     };
 
 
-    this.takeDammage = function(nb){
-        this.PV -=nb;
+    this.takeDammage = function (nb) {
+        this.PV -= nb;
         this.displayCodeBar();
     }
 
-    this.displayCodeBar = function (where) {
-        if(!this.where){
-        if(!where){
-            this.where ='card_' + this.type;
+    this.displayCodeBar = function () {
+        var where;
+        if(this.type == type_character){
+            where ='card_player'+this.playerNumber;
         }
-        else{
-            this.where =where;
-        }
-        }
-        document.getElementById(this.where).style.display = 'block';
-        document.querySelector('#'+this.where + ' .top').textContent = type[this.type][this.sousType];
-        document.querySelector('#'+this.where+' .picture').src = get_picture();
-        if (this.name) document.querySelector('#'+this.where+' .bottom').textContent = this.name;
+        else where = 'card_' + this.type;
+        show(where);
+        document.querySelector('#' + where + ' .top').textContent = type[this.type][this.sousType];
+        document.querySelector('#' + where + ' .picture').src = get_picture();
+        if (this.name)
+            document.querySelector('#' + where + ' .bottom').textContent = this.name;
         if (this.type == type_armor) {
-            document.querySelector('#'+this.where+' .VDA .ARMOR span').innerHTML = '+' + this.ARMOR;
+            document.querySelector('#' + where + ' .VDA .ARMOR span').innerHTML = '+' + this.ARMOR;
         }
         else if (this.type == type_weapon) {
-            document.querySelector('#'+this.where+' .VDA .FO span').innerHTML = '+' + this.FO;
+            document.querySelector('#' + where + ' .VDA .FO span').innerHTML = '+' + this.FO;
         }
         else {
-            document.querySelector('#'+this.where+' .VDA .PV span').innerHTML = this.PV;
-            document.querySelector('#'+this.where+' .VDA .FO span').innerHTML = this.FO;
-            document.querySelector('#'+this.where+' .VDA .ARMOR span').innerHTML = this.ARMOR;
+            document.querySelector('#' + where + ' .VDA .PV span').innerHTML = this.PV;
+            document.querySelector('#' + where + ' .VDA .FO span').innerHTML = this.FO;
+            document.querySelector('#' + where + ' .VDA .ARMOR span').innerHTML = this.ARMOR;
         }
 
     };
@@ -342,16 +342,17 @@ function BattleBarFighter(codebar) {
 
         var type_use = this.FO;
         var interval = interval_p1;
-        if(codebar.format=='IA') interval = interval_p2;
+        if (codebar.format == 'IA')
+            interval = interval_p2;
         if (type_fight == fight_attack) {
-            document.getElementById("valeur_jauge"+(codebar.format=='IA'?'2':'')).className = "attack";
+            document.getElementById("valeur_jauge" + (codebar.format == 'IA' ? '2' : '')).className = "attack";
             type_use = this.FO;
         }
         else {
-            document.getElementById("valeur_jauge"+(codebar.format=='IA'?'2':'')).className = "defense";
+            document.getElementById("valeur_jauge" + (codebar.format == 'IA' ? '2' : '')).className = "defense";
             type_use = this.ARMOR;
         }
-        if(interval== interval_p1){
+        if (interval == interval_p1) {
             clearInterval(interval_p1);
             interval_p1 = null;
             interval_p1 = setInterval(function () {
@@ -365,11 +366,11 @@ function BattleBarFighter(codebar) {
                 interval_start_percent += interval_inc;
                 result_click_fight = Math.round(type_use * interval_start_percent / 100);
 
-                document.getElementById("valeur_jauge"+(codebar.format=='IA'?'2':'')).style.width = interval_start_percent + "%";
-                document.getElementById("label_jauge"+(codebar.format=='IA'?'2':'')).textContent = result_click_fight;
+                document.getElementById("valeur_jauge" + (codebar.format == 'IA' ? '2' : '')).style.width = interval_start_percent + "%";
+                document.getElementById("label_jauge" + (codebar.format == 'IA' ? '2' : '')).textContent = result_click_fight;
             }, 7);
         }
-        else if(interval== interval_p2){
+        else if (interval == interval_p2) {
             clearInterval(interval_p2);
             interval_p2 = null;
             interval_p2 = setInterval(function () {
@@ -383,8 +384,8 @@ function BattleBarFighter(codebar) {
                 interval_start_percent += interval_inc;
                 result_click_fight = Math.round(type_use * interval_start_percent / 100);
 
-                document.getElementById("valeur_jauge"+(codebar.format=='IA'?'2':'')).style.width = interval_start_percent + "%";
-                document.getElementById("label_jauge"+(codebar.format=='IA'?'2':'')).textContent = result_click_fight;
+                document.getElementById("valeur_jauge" + (codebar.format == 'IA' ? '2' : '')).style.width = interval_start_percent + "%";
+                document.getElementById("label_jauge" + (codebar.format == 'IA' ? '2' : '')).textContent = result_click_fight;
             }, 9);
         }
 
@@ -395,12 +396,13 @@ function BattleBarFighter(codebar) {
 
     this.click_fight = function () {
         var interval = interval_p1;
-        if(codebar.format=='IA') interval = interval_p2;
+        if (codebar.format == 'IA')
+            interval = interval_p2;
         clearInterval(interval);
         interval = null;
 
-      return result_click_fight;
+        return result_click_fight;
     }
-
+    
 
 }

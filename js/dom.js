@@ -1,11 +1,9 @@
+var width = document.body.clientWidth;
+var height = document.body.clientHeight;
+
 document.getElementById("scan_button").onclick = function (e) {
     scan();
 };
-
-var menu_buttons = document.getElementsByClassName("menu_button");
-
-var width = document.body.clientWidth;
-var height = document.body.clientHeight;
 
 var all_buttons = document.querySelectorAll('input[type="button"]');
 
@@ -13,35 +11,17 @@ for (var i = 0; i < all_buttons.length; i++) {
     all_buttons[i].style.width = (width - 20) + 'px';
 }
 
-
-
-function check_save(to_check) {
-    for (var i = 0; i < to_check.length; i++) {
-        var check_cookie = cookie.get('codebar_' + to_check[i]);
-
-        if (check_cookie) {
-            document.getElementById('start_button').value = 'Continuer la partie';
-            var BBF = new BattleBarFighter(JSON.parse(check_cookie));
-            BBF.displayCodeBar();
-            if (BBF.type == type_character) {
-                player_1 = BBF;
-            }
-        }
-    }
-}
-
-
+var menu_buttons = document.getElementsByClassName("menu_button");
 for (var i = 0; i < menu_buttons.length; i++) {
     menu_buttons[i].onclick = function (e) {
         var clicked = e.srcElement.id;
         hideClass("content");
         clearTimeout(timeout_click_fight);
         hide("menu");
-        show("scan","content_" + clicked);
-
+        show("content_" + clicked);
 
         if (clicked == "player_1") {
-            show("cards");
+            show("cards", "scan_button");
             check_save([type_character, type_armor, type_weapon]);
         }
     };
@@ -55,22 +35,22 @@ document.getElementById("title_button").onclick = function (e) {
 document.getElementById("start_button").onclick = function () {
     if (player_1) {
         hideClass("content");
-        show("cards","combat","card_ennemi");
-        hide("card_" + type_armor, "card_" + type_weapon );
+        show("cards", "combat", "card_player2");
+        hide("card_" + type_armor, "card_" + type_weapon);
         document.getElementById('div_img_ennemi').classList.add('picture_equipement');
         document.getElementById('div_img_player_1').classList.add('picture_equipement');
 
         do {
-            player_2 = fake_scan('IA', 'card_ennemi');
+            player_2 = fake_scan(2);
         }
-        while (player_2.type != type_character);
+        while (player_2.type !== type_character);
 
         player_1.fight(fight_attack);
         player_2.fight(fight_defense);
         fight_attack_desactivate = false;
         show("button_attack");
     }
-}
+};
 
 document.getElementById("button_attack").onclick = function () {
     document.getElementById("result_fight").innerHTML = "";
@@ -101,10 +81,10 @@ document.getElementById("button_attack").onclick = function () {
             player_1.fight(fight_defense);
             player_2.fight(fight_attack);
             fight_defense_desactivate = false;
-        }, 2000)
+        }, 2000);
     }
     return false;
-}
+};
 
 document.getElementById("button_defense").onclick = function () {
     document.getElementById("result_fight").innerHTML = "";

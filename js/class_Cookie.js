@@ -31,7 +31,8 @@ function Cookie(key, value) {
 
     this.set(key, value);
 
-};
+}
+;
 
 var cookie = new Cookie();
 

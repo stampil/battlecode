@@ -9,17 +9,38 @@ if (typeof cordova == 'undefined') {
 
     cordova.plugins.barcodeScanner.scan = function () {
         //document.getElementById('ret').textContent='Scan non disponible';
-        o = fake_scan(2);
+        o = fake_scan(1);
         if (o.type == type_character) {
             player_1 = o;
+            show("start_button");
         }
 
     }
 }
 
-function fake_scan(format, where) {
-    var BBF = new BattleBarFighter({text: Math.round((Math.random() * 1000000000000) + 1000000000000).toString(), format: format});
-    BBF.displayCodeBar(where);
+
+function check_save(to_check) {
+    for (var i = 0; i < to_check.length; i++) {
+        var check_cookie = cookie.get('codebar_' + to_check[i]);
+
+        if (check_cookie) {
+            document.getElementById('start_button').value = 'Continuer la partie';
+            var BBF = new BattleBarFighter(JSON.parse(check_cookie));
+            BBF.playerNumber=1;
+            console.log('disp',BBF,'checkcookie');
+            BBF.displayCodeBar();
+            if (BBF.type == type_character) {
+                player_1 = BBF;
+                show("start_button");
+            }
+        }
+    }
+}
+
+function fake_scan(player) {
+    var BBF = new BattleBarFighter({text: Math.round((Math.random() * 1000000000000) + 1000000000000).toString(), format: 'fake_scan'});
+    BBF.playerNumber = player;
+    BBF.displayCodeBar();
     return BBF;
 }
 
@@ -33,10 +54,12 @@ function scan() {
 
                 if (result.text) {
                     var BBF = new BattleBarFighter(result);
-                    BBF.save();
+                    BBF.playerNumber=1;
+                    BBF.toBDD();
                     BBF.displayCodeBar();
                     if (BBF.type == type_character) {
                         player_1 = BBF;
+                        show("start_button");
                     }
                 }
                 else {
@@ -65,7 +88,7 @@ function display(display, tab) {
         elId = tab[i];
         if (document.getElementById(elId)) {
             document.getElementById(elId).style.display = display;
-            console.info(display, '#'+elId);
+            console.info(display, '#' + elId);
         }
         else {
             console.error(elId, 'not an dom id to ' + display);
@@ -80,7 +103,7 @@ function displayClass(display, tab) {
         var els = document.getElementsByClassName(elClass);
         for (var j = 0; j < els.length; j++) {
             els[j].style.display = display;
-            console.info(display,'.'+els[j].className);
+            console.info(display, '.' + els[j].className);
         }
     }
 }

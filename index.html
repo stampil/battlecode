@@ -42,23 +42,21 @@
 
         </div>
         <div id="content_player_2" class="content">
-            WIP
+            Pas disponible pour cette version.
         </div>
         <div id="content_multi" class="content">
-            WIP
+            Pas disponible pour cette version.
         </div>
 
-        <div id="scan" class="content">
-            <input type="button" value="scan" id="scan_button" />
-            <input type="button" value="Commencer la partie" id="start_button" />
-        </div>
+        <input type="button" value="scan" id="scan_button" class="content" />
+        <input type="button" value="Commencer la partie" id="start_button" class="content" />
 
         <div id="ret" class="content"></div>
 
         <table id="cards"  class="content" border=0>
             <tr>
                 <td valign="top" rowspan="2">
-                    <table id="card_0"  cellspacing=0 align=center>
+                    <table id="card_player1"  cellspacing=0 align=center>
                         <tr>
                             <td colspan=3 class="top">Legionnaire</td>
                         </tr>
@@ -96,7 +94,7 @@
                     </table>
                 </td>
                 <td valign="top" rowspan="2">
-                    <table id="card_ennemi"  cellspacing=0 align=center>
+                    <table id="card_player2"  cellspacing=0 align=center>
                         <tr>
                             <td colspan=3 class="top">Legionnaire</td>
                         </tr>
@@ -145,39 +143,37 @@
 
 
 
-<div id="combat" class="content">
+        <div id="combat" class="content">
 
-    <table>
-        <tr>
-            <td>
-                <div id="jauge">
-                    <div id="valeur_jauge" class="attack"></div>
-                    <div id="label_jauge"></div>
-                </div>
-            </td>
-            <td>
-                <div id="jauge2">
-                    <div id="valeur_jauge2" class="defense"></div>
-                    <div id="label_jauge2"></div>
-                </div>
-            </td>
-            <td>
-                <div id="button_attack_defense">
-                <img src="img/attack.png" id="button_attack"  class="content" />
-                <img src="img/defense.png" id="button_defense"  class="content" />
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center"><span id="result_fight"></span></td>
-        </tr>
-    </table>
+            <table>
+                <tr>
+                    <td>
+                        <div id="jauge">
+                            <div id="valeur_jauge" class="attack"></div>
+                            <div id="label_jauge"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div id="jauge2">
+                            <div id="valeur_jauge2" class="defense"></div>
+                            <div id="label_jauge2"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div id="button_attack_defense">
+                            <img src="img/attack.png" id="button_attack"  class="content" />
+                            <img src="img/defense.png" id="button_defense"  class="content" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><span id="result_fight"></span></td>
+                </tr>
+            </table>
 
-</div>
-
-
-
+        </div>
+        <div id="version">V0.1.5</div>
         <script type="text/javascript" src="js/dom.js"></script>
-    <div id="version">V0.1.5</div>
-</body>
+
+    </body>
 </html>

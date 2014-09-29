@@ -58,7 +58,7 @@ input[type="button"]{
     background:url('../img/texture_marbre.jpg');
 }
 
-#card_0, #card_1, #card_2, #card_ennemi{
+#card_player1, #card_1, #card_2, #card_player2{
     border:1px solid black;
     border-radius: 15px;
     width:200px;
