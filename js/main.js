@@ -11,7 +11,7 @@ if (typeof cordova == 'undefined') {
         //document.getElementById('ret').textContent='Scan non disponible';
         o = fake_scan(1);
         if (o.type == type_character) {
-            player_1 = o;
+            character_player1 = o;
             show("start_button");
         }
 
@@ -25,12 +25,10 @@ function check_save(to_check) {
 
         if (check_cookie) {
             document.getElementById('start_button').value = 'Continuer la partie';
-            var BBF = new BattleBarFighter(JSON.parse(check_cookie));
-            BBF.playerNumber=1;
-            console.log('disp',BBF,'checkcookie');
+            var BBF = new BattleBarFighter(JSON.parse(check_cookie),player1);
             BBF.displayCodeBar();
             if (BBF.type == type_character) {
-                player_1 = BBF;
+                character_player1 = BBF;
                 show("start_button");
             }
         }
@@ -38,8 +36,7 @@ function check_save(to_check) {
 }
 
 function fake_scan(player) {
-    var BBF = new BattleBarFighter({text: Math.round((Math.random() * 1000000000000) + 1000000000000).toString(), format: 'fake_scan'});
-    BBF.playerNumber = player;
+    var BBF = new BattleBarFighter({text: Math.round((Math.random() * 1000000000000) + 1000000000000).toString(), format: 'fake_scan'},player);
     BBF.displayCodeBar();
     return BBF;
 }
@@ -53,12 +50,11 @@ function scan() {
 
 
                 if (result.text) {
-                    var BBF = new BattleBarFighter(result);
-                    BBF.playerNumber=1;
+                    var BBF = new BattleBarFighter(result, player1);
                     BBF.toBDD();
                     BBF.displayCodeBar();
                     if (BBF.type == type_character) {
-                        player_1 = BBF;
+                        character_player1 = BBF;
                         show("start_button");
                     }
                 }

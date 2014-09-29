@@ -1,4 +1,4 @@
-function BattleBarFighter(codebar) {
+function BattleBarFighter(codebar, playerNumber) {
     this.codebar = codebar;
     this.PV;
     this.FO;
@@ -6,7 +6,7 @@ function BattleBarFighter(codebar) {
     this.name = '';
     this.type;
     this.sousType;
-    this.playerNumber
+    this.playerNumber = playerNumber;
 
     this.stringNumber = codebar.text.toString();
 
@@ -38,7 +38,7 @@ function BattleBarFighter(codebar) {
 
     generate_roman_name();
 
-    function ToCookie() {
+    function toCookie() {
         if (self.playerNumber == 1) {
             cookie = new Cookie('codebar_' + self.type, JSON.stringify(codebar));
         }

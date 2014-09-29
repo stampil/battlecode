@@ -13,8 +13,10 @@ var sstype_pugio = 1;
 var sstype_lorica_hamata = 0;
 var sstype_lorica_segmentata = 1;
 
-var player_1 = null;
-var player_2 = null;
+var character_player1 = null;
+var character_player2 = null;
+var player1 = 1;
+var player2 = 2;
 
 var fight_attack = 1;
 var fight_defense = 0;
