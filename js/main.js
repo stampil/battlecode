@@ -14,6 +14,12 @@ if (typeof cordova == 'undefined') {
             character_player1 = o;
             show("start_button");
         }
+        else if (o.type == type_weapon) {
+            weapon_player1 = o;
+        }
+        else {
+            armor_player1 = o;
+        }
 
     }
 }
@@ -30,6 +36,12 @@ function check_save(to_check) {
             if (BBF.type == type_character) {
                 character_player1 = BBF;
                 show("start_button");
+            }
+            else if (BBF.type == type_weapon) {
+                weapon_player1 = BBF;
+            }
+            else {
+                armor_player1 = BBF;
             }
         }
     }
@@ -56,6 +68,11 @@ function scan() {
                     if (BBF.type == type_character) {
                         character_player1 = BBF;
                         show("start_button");
+                    } else if (BBF.type == type_weapon) {
+                        weapon_player1 = BBF;
+                    }
+                    else {
+                        armor_player1 = BBF;
                     }
                 }
                 else {
@@ -127,8 +144,8 @@ function jauges(param) {
     if (param == 'start') {
         dom_jauge.style.webkitAnimationPlayState = '';
         dom_jauge2.style.webkitAnimationPlayState = '';
-        document.getElementById("label_jauge").innerHTML='';
-        document.getElementById("label_jauge2").innerHTML='';
+        document.getElementById("label_jauge").innerHTML = '';
+        document.getElementById("label_jauge2").innerHTML = '';
     } else if (param == 'stop') {
         if (dom_jauge.style.webkitAnimationPlayState != 'paused') {
             dom_jauge.style.webkitAnimationPlayState = 'paused';

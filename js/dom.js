@@ -40,12 +40,18 @@ document.getElementById("start_button").onclick = function () {
     if (character_player1) {
         hideClass("content");
         show("cards", "combat", "card_player2");
-        
+              
         document.getElementById('div_img_player_1').classList.add('picture_equipement');
         document.getElementById('div_img_player_2').classList.add('picture_equipement');
         document.getElementById('img_player_1').classList.remove('blink');
         document.getElementById('img_player_2').classList.remove('blink');
-
+        if(weapon_player1){
+            character_player1.FO += weapon_player1.FO;
+        }
+        if(armor_player1){
+            character_player1.ARMOR += armor_player1.ARMOR;
+        }
+        character_player1.displayCodeBar();
         do {
             character_player2 = fake_scan(player2);
         }

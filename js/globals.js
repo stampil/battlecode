@@ -14,6 +14,8 @@ var sstype_lorica_hamata = 0;
 var sstype_lorica_segmentata = 1;
 
 var character_player1 = null;
+var armor_player1 = null;
+var weapon_player1=null;
 var character_player2 = null;
 var player1 = 1;
 var player2 = 2;
