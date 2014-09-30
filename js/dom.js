@@ -146,11 +146,3 @@ document.getElementById("button_defense").onmousedown = function () {
     }
     return false;
 }
-function test(){
-cordova.plugins.barcodeScanner.encode(cordova.plugins.barcodeScanner.Encode.TEXT_TYPE, 1111111111116, function(success) {
-            alert("encode success: " + success);
-          }, function(fail) {
-            alert("encoding failed: " + fail);
-          }
-        );
-}
