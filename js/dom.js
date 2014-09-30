@@ -41,7 +41,7 @@ document.getElementById("start_button").onclick = function () {
         hideClass("content");
         show("cards", "combat", "card_player2");
         
-        document.getElementById('div_img_ennemi').classList.add('picture_equipement');
+        document.getElementById('div_img_player_2').classList.add('picture_equipement');
         document.getElementById('div_img_player_1').classList.add('picture_equipement');
 
         do {
@@ -79,13 +79,18 @@ document.getElementById("button_attack").onmousedown = function () {
         
             console.log('degat fait', degat);
             document.getElementById("result_fight").innerHTML = "degat fait :<span class='FO'>" + degat + "</span>";
-            character_player2.takeDammage(degat);
+            if(degat){
+                document.getElementById('div_img_player_2').classList.add('blink');
+                character_player2.takeDammage(degat);
+            }
+            
             if (character_player2.PV <= 0)
                 return;
         
         timeout_click_fight = setTimeout(function () {
             hide("button_attack");
             show("button_defense");
+            document.getElementById('div_img_player_2').classList.remove('blink');
             character_player1.fight(fight_defense);
             character_player2.fight(fight_attack);
             fight_defense_desactivate = false;
@@ -114,17 +119,21 @@ document.getElementById("button_defense").onmousedown = function () {
         if(degat <0) degat = 0;
             console.log('degat subit', degat);
             document.getElementById("result_fight").innerHTML = "degat subit :<span class='FO'>" + degat + "</span>";
-            character_player1.takeDammage(degat);
+            if(degat){
+                document.getElementById('div_img_player_1').classList.add('blink');
+                character_player1.takeDammage(degat);
+            }
             if (character_player1.PV <= 0)
                 return;
         
         timeout_click_fight = setTimeout(function () {
             show("button_attack");
             hide("button_defense");
+            document.getElementById('div_img_player_1').classList.remove('blink');
             character_player1.fight(fight_attack);
             character_player2.fight(fight_defense);
             fight_attack_desactivate = false;
-        }, 3000);
+        }, 2000);
 
     }
     return false;

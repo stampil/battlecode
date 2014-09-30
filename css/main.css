@@ -27,10 +27,7 @@ input[type="button"]{
     max-width: 300px;
     max-height: 300px;
 }
-.picture_equipement{
-    width:164px;
-    height:100px;
-}
+
 .content{
     display:none;
 }
@@ -106,10 +103,12 @@ input[type="button"]{
     -ms-filter: "FlipH";
 }
 
-
-
-#div_img_player_1, #div_img_ennemi{
+#div_img_player_1, #div_img_player_2{
     overflow:hidden;
+    height:275px;
+}
+#td_player_2, #td_player_1{
+    background:red;
 }
 
 #version{
@@ -124,5 +123,9 @@ input[type="button"]{
     top:2px;
     left:14px;
     cursor:pointer;
+}
+.picture_equipement{
+    width:164px;
+    height:100px !important;
 }
 
