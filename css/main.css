@@ -65,7 +65,8 @@ input[type="button"]{
     padding:10px;
 }
 
-.content p{
+#content_player_1{
+    padding:20px;
     text-align: justify;
 }
 
@@ -113,9 +114,8 @@ input[type="button"]{
 
 #version{
     font-size: 7pt;
-    position: absolute;
-    right: 5px;
-    bottom: 0;
+    margin-top:10px;
+    float:right;
 }
 
 #button_attack_defense{
