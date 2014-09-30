@@ -95,12 +95,7 @@ input[type="button"]{
     font-weight: bold;
 }
 
-.attack{
-    background-color: orangered;
-}
-.defense{
-    background-color: darkslategrey;
-}
+
 
 .flip{
     -moz-transform: scaleX(-1);

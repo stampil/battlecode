@@ -1,5 +1,7 @@
 var width = document.body.clientWidth;
 var height = document.body.clientHeight;
+var dom_jauge = document.getElementById('valeur_jauge');
+var dom_jauge2 = document.getElementById('valeur_jauge2');
 
 document.getElementById("scan_button").onclick = function (e) {
     scan();

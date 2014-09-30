@@ -25,7 +25,7 @@ function check_save(to_check) {
 
         if (check_cookie) {
             document.getElementById('start_button').value = 'Continuer la partie';
-            var BBF = new BattleBarFighter(JSON.parse(check_cookie),player1);
+            var BBF = new BattleBarFighter(JSON.parse(check_cookie), player1);
             BBF.displayCodeBar();
             if (BBF.type == type_character) {
                 character_player1 = BBF;
@@ -36,7 +36,7 @@ function check_save(to_check) {
 }
 
 function fake_scan(player) {
-    var BBF = new BattleBarFighter({text: Math.round((Math.random() * 1000000000000) + 1000000000000).toString(), format: 'fake_scan'},player);
+    var BBF = new BattleBarFighter({text: Math.round((Math.random() * 1000000000000) + 1000000000000).toString(), format: 'fake_scan'}, player);
     BBF.displayCodeBar();
     return BBF;
 }
@@ -118,4 +118,32 @@ function showClass() {
 
 function hideClass() {
     displayClass("none", arguments);
+}
+
+
+
+
+function jauges(param) {
+    if (param == 'start' && !interval_p1) {
+        dom_jauge.style.webkitAnimationPlayState = '';
+        dom_jauge2.style.webkitAnimationPlayState = '';
+        interval_p1 = setInterval(function () {
+            document.getElementById('label_jauge').innerHTML = dom_jauge.clientWidth;
+        }, interval_p_timing);
+        interval_p2 = setInterval(function () {
+            document.getElementById('label_jauge2').innerHTML = dom_jauge2.clientWidth;
+        }, interval_p_timing);
+    } else if (param == 'stop') {
+        if (dom_jauge.style.webkitAnimationPlayState != 'paused') {
+            dom_jauge.style.webkitAnimationPlayState = 'paused';
+            dom_jauge2.style.webkitAnimationPlayState = 'paused';
+        }
+        setTimeout(function () {
+            clearInterval(interval_p1);
+            interval_p1 = null;
+            clearInterval(interval_p2);
+            interval_p2 = null;
+        }, interval_p_timing+1);
+
+    }
 }

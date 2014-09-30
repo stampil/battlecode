@@ -199,3 +199,78 @@
     -moz-animation-name:blink;
     -moz-animation-timing-function:ease-in-out
 }
+
+
+.animate_attack {
+    -webkit-animation: attack 1.5s linear 0s infinite alternate;
+    animation: attack 1.5s linear 0s infinite alternate;
+}
+
+.animate_defense {
+    -webkit-animation: defense 1.8s linear 0s infinite alternate;
+    animation: defense 1.8s linear 0s infinite alternate;
+}
+
+
+
+/* Chrome, Safari, Opera */
+ @-webkit-keyframes attack {
+    0% {
+        background:orange;
+        width:0%;
+    }
+    50% {
+        background:orangered;
+        width:100%;
+    }
+    100% {
+        background:orange;
+        width:0%;
+    }
+}
+/* Standard syntax */
+ @keyframes attack {
+    0% {
+        background:orange;
+        width:0%;
+    }
+    50% {
+        background:orangered;
+        width:100%;
+    }
+    100% {
+        background:orange;
+        width:0%;
+    }
+}
+
+/* Chrome, Safari, Opera */
+ @-webkit-keyframes defense {
+    0% {
+        background:lightgray;
+        width:0%;
+    }
+    50% {
+        background:darkslategrey;
+        width:100%;
+    }
+    100% {
+        background:lightgray;
+        width:0%;
+    }
+}
+/* Standard syntax */
+ @keyframes defense {
+    0% {
+        background:lightgray;
+        width:0%;
+    }
+    50% {
+        background:darkslategrey;
+        width:100%;
+    }
+    100% {
+        background:lightgray;
+        width:0%;
+    }
+}
