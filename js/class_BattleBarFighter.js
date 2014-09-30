@@ -7,7 +7,7 @@ function BattleBarFighter(codebar, playerNumber) {
     this.type;
     this.sousType;
     this.playerNumber = playerNumber;
-
+    this.typeFight;
     this.stringNumber = codebar.text.toString();
 
     var maxPV = 10000;
@@ -332,11 +332,12 @@ function BattleBarFighter(codebar, playerNumber) {
 
 
     this.fight = function (type_fight) {
+        this.typeFight=type_fight;
         if (this.type !== type_character) {
             return false;
         }
 
-        if (type_fight == fight_attack) {
+        if (this.typeFight == fight_attack) {
             document.getElementById("valeur_jauge" + (this.playerNumber == player2 ? '2' : '')).className = "animate_attack";
         }
         else {
@@ -348,12 +349,25 @@ function BattleBarFighter(codebar, playerNumber) {
 
     this.click_fight = function () {
         jauges("stop");
+        var percent = 0;
+        var ret =0;
+        var domret={};
         if(this.playerNumber==player1){
-            return dom_jauge.clientWidth;
+            percent = Math.round(dom_jauge.clientWidth/dom_jauge_container.clientWidth*100);
+            domret = document.getElementById("label_jauge");
         }
         else{
-            return dom_jauge2.clientWidth;
+            percent = Math.round(dom_jauge2.clientWidth/dom_jauge_container.clientWidth*100);
+            domret = document.getElementById("label_jauge2");
         }
+        if (this.typeFight == fight_attack) {
+            ret = Math.round(this.FO*percent/100);
+        }
+        else{
+            ret = Math.round(this.ARMOR*percent/100);
+        }
+        domret.innerHTML=ret;
+        return ret;
     };
     
 }

@@ -2,6 +2,8 @@ var width = document.body.clientWidth;
 var height = document.body.clientHeight;
 var dom_jauge = document.getElementById('valeur_jauge');
 var dom_jauge2 = document.getElementById('valeur_jauge2');
+var dom_jauge_container = document.getElementById('jauge');
+
 
 document.getElementById("scan_button").onclick = function (e) {
     scan();
@@ -38,7 +40,7 @@ document.getElementById("start_button").onclick = function () {
     if (character_player1) {
         hideClass("content");
         show("cards", "combat", "card_player2");
-        hide("card_" + type_armor, "card_" + type_weapon);
+        
         document.getElementById('div_img_ennemi').classList.add('picture_equipement');
         document.getElementById('div_img_player_1').classList.add('picture_equipement');
 
@@ -46,7 +48,8 @@ document.getElementById("start_button").onclick = function () {
             character_player2 = fake_scan(player2);
         }
         while (character_player2.type !== type_character);
-
+        
+        hide("card_" + type_armor, "card_" + type_weapon);
         character_player1.fight(fight_attack);
         character_player2.fight(fight_defense);
         fight_attack_desactivate = false;

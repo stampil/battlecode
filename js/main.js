@@ -84,7 +84,7 @@ function display(display, tab) {
         elId = tab[i];
         if (document.getElementById(elId)) {
             document.getElementById(elId).style.display = display;
-            //console.info(display, '#' + elId);
+            console.info(display, '#' + elId);
         }
         else {
             console.error(elId, 'not an dom id to ' + display);
@@ -99,7 +99,7 @@ function displayClass(display, tab) {
         var els = document.getElementsByClassName(elClass);
         for (var j = 0; j < els.length; j++) {
             els[j].style.display = display;
-            //console.info(display, '.' + els[j].className);
+            console.info(display, '.' + els[j].className);
         }
     }
 }
@@ -124,26 +124,15 @@ function hideClass() {
 
 
 function jauges(param) {
-    if (param == 'start' && !interval_p1) {
+    if (param == 'start') {
         dom_jauge.style.webkitAnimationPlayState = '';
         dom_jauge2.style.webkitAnimationPlayState = '';
-        interval_p1 = setInterval(function () {
-            document.getElementById('label_jauge').innerHTML = dom_jauge.clientWidth;
-        }, interval_p_timing);
-        interval_p2 = setInterval(function () {
-            document.getElementById('label_jauge2').innerHTML = dom_jauge2.clientWidth;
-        }, interval_p_timing);
+        document.getElementById("label_jauge").innerHTML='';
+        document.getElementById("label_jauge2").innerHTML='';
     } else if (param == 'stop') {
         if (dom_jauge.style.webkitAnimationPlayState != 'paused') {
             dom_jauge.style.webkitAnimationPlayState = 'paused';
             dom_jauge2.style.webkitAnimationPlayState = 'paused';
         }
-        setTimeout(function () {
-            clearInterval(interval_p1);
-            interval_p1 = null;
-            clearInterval(interval_p2);
-            interval_p2 = null;
-        }, interval_p_timing+1);
-
     }
 }

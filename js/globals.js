@@ -23,6 +23,3 @@ var fight_defense = 0;
 var fight_attack_desactivate = true;
 var fight_defense_desactivate = true;
 var timeout_click_fight = null;
-var interval_p1 = null;
-var interval_p2 = null;
-var interval_p_timing=50;
