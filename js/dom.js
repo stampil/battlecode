@@ -54,7 +54,7 @@ document.getElementById("start_button").onclick = function () {
     }
 };
 
-document.getElementById("button_attack").onclick = function () {
+document.getElementById("button_attack").onmousedown = function () {
     document.getElementById("result_fight").innerHTML = "";
     if (fight_attack_desactivate) {
         console.warn('P2 click desactivated');
@@ -90,7 +90,7 @@ document.getElementById("button_attack").onclick = function () {
     return false;
 };
 
-document.getElementById("button_defense").onclick = function () {
+document.getElementById("button_defense").onmousedown = function () {
     document.getElementById("result_fight").innerHTML = "";
     if (fight_defense_desactivate) {
         console.warn('P1 click desactivated');
