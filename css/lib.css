@@ -202,13 +202,13 @@
 
 
 .animate_attack {
-    -webkit-animation: attack 1.5s linear 0s infinite alternate;
-    animation: attack 1.5s linear 0s infinite alternate;
+    -webkit-animation: attack 0.9s linear 0s infinite alternate;
+    animation: attack 0.9s linear 0s infinite alternate;
 }
 
 .animate_defense {
-    -webkit-animation: defense 1.8s linear 0s infinite alternate;
-    animation: defense 1.8s linear 0s infinite alternate;
+    -webkit-animation: defense 0.7s linear 0s infinite alternate;
+    animation: defense 0.7s linear 0s infinite alternate;
 }
 
 

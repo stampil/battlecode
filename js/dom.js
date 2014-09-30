@@ -58,7 +58,7 @@ document.getElementById("start_button").onclick = function () {
 };
 
 document.getElementById("button_attack").onmousedown = function () {
-    document.getElementById("result_fight").innerHTML = "";
+    document.getElementById("result_fight").innerHTML = "&nbsp;";
     if (fight_attack_desactivate) {
         console.warn('P2 click desactivated');
         return false;
@@ -75,13 +75,14 @@ document.getElementById("button_attack").onmousedown = function () {
         }
 
         var degat = res1 - res2;
-        if (degat > 0) {
+        if(degat <0) degat = 0;
+        
             console.log('degat fait', degat);
             document.getElementById("result_fight").innerHTML = "degat fait :<span class='FO'>" + degat + "</span>";
             character_player2.takeDammage(degat);
             if (character_player2.PV <= 0)
                 return;
-        }
+        
         timeout_click_fight = setTimeout(function () {
             hide("button_attack");
             show("button_defense");
@@ -94,7 +95,7 @@ document.getElementById("button_attack").onmousedown = function () {
 };
 
 document.getElementById("button_defense").onmousedown = function () {
-    document.getElementById("result_fight").innerHTML = "";
+    document.getElementById("result_fight").innerHTML = "&nbsp;";
     if (fight_defense_desactivate) {
         console.warn('P1 click desactivated');
         return false;
@@ -110,13 +111,13 @@ document.getElementById("button_defense").onmousedown = function () {
             timeout_click_fight = null;
         }
         var degat = res2 - res1;
-        if (degat > 0) {
+        if(degat <0) degat = 0;
             console.log('degat subit', degat);
             document.getElementById("result_fight").innerHTML = "degat subit :<span class='FO'>" + degat + "</span>";
             character_player1.takeDammage(degat);
             if (character_player1.PV <= 0)
                 return;
-        }
+        
         timeout_click_fight = setTimeout(function () {
             show("button_attack");
             hide("button_defense");
