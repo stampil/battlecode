@@ -128,4 +128,11 @@ input[type="button"]{
     width:164px;
     height:100px !important;
 }
+#button_fight{
+    width: 60px !important;
+    position: relative;
+    left: -21px;
+    top: -2px;
+    padding: 17px 0px;
+}
 

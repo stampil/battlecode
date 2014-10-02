@@ -22,6 +22,7 @@ var player2 = 2;
 
 var fight_attack = 1;
 var fight_defense = 0;
+var fight_desactivate = true;
 var fight_attack_desactivate = true;
 var fight_defense_desactivate = true;
 var timeout_click_fight = null;

@@ -9,6 +9,7 @@ function BattleBarFighter(codebar, playerNumber) {
     this.playerNumber = playerNumber;
     this.typeFight;
     this.stringNumber = codebar.text.toString();
+    this.nbVictoire=0;
 
     var maxPV = 10000;
     var maxFO = 4000;
@@ -27,6 +28,7 @@ function BattleBarFighter(codebar, playerNumber) {
     ];
 
     generate_PV();
+    generate_VICTOIRE();
     generate_FO();
     generate_ARMOR();
     setType();
@@ -36,9 +38,11 @@ function BattleBarFighter(codebar, playerNumber) {
 
     function toCookie() {
         if (self.playerNumber == player1) {
-            cookie = new Cookie('codebar_' + self.type, JSON.stringify(codebar));
+            self.codebar.PV = self.PV;
+            self.codebar.nbVictoire = self.nbVictoire;
+            cookie = new Cookie('codebar_' + self.type, JSON.stringify(self.codebar));
         }
-    }
+    };
 
     function setType() {
 
@@ -80,10 +84,20 @@ function BattleBarFighter(codebar, playerNumber) {
             self.sousType = sstype_glaive;
         }
 
-    }
+    };
 
+    function generate_VICTOIRE() {
+        if(self.codebar.nbVictoire){
+            self.nbVictoire= self.codebar.nbVictoire;
+            return;
+        }
+    };
 
     function generate_PV() {
+        if(self.codebar.PV){
+            self.PV= self.codebar.PV;
+            return;
+        }
         self.PV = 0;
         for (var i = 0; i < self.stringNumber.length; i++) {
             if (i % 2 == 1) {
@@ -94,7 +108,7 @@ function BattleBarFighter(codebar, playerNumber) {
             }
         }
         self.PV %= maxPV;
-    }
+    };
 
     function generate_FO() {
 
@@ -107,7 +121,7 @@ function BattleBarFighter(codebar, playerNumber) {
             }
         }
         self.FO %= maxFO;
-    }
+    };
 
     function generate_ARMOR() {
 
@@ -121,12 +135,12 @@ function BattleBarFighter(codebar, playerNumber) {
             }
         }
         self.ARMOR %= maxARMOR;
-    }
+    };
 
 
     function get_letter(tab, inc) {
         return tab[(parseInt(self.stringNumber[inc]) + tab.length * 13) % tab.length];
-    }
+    };
 
     function get_picture() {
 
@@ -168,7 +182,7 @@ function BattleBarFighter(codebar, playerNumber) {
             }
         }
 
-    }
+    };
 
 
     function generate_roman_name() {
@@ -293,17 +307,29 @@ function BattleBarFighter(codebar, playerNumber) {
             self.name += get_letter(c, inc--);
             self.name += 'us';
         }
-    }
-
-    this.toBDD = function () {
-        ajax('setCodeBar.php', 'result=' + this.codebar.text + '&format=' + this.codebar.format + '&id_gsm=123', 'cb_set_code_bar');
     };
 
+    this.toBDD = function () {
+        ajax('setCodeBar.php', 'result=' + this.codebar.text + '&format=' + this.codebar.format + '&name=' + this.name + '&nbVictoire=' + this.nbVictoire + '&id_gsm=123', 'cb_set_code_bar');
+    };
+    
+    this.displayVictoire = function(){
+        document.getElementById('nb_combat').textContent=this.nbVictoire;
+    };
 
+    this.addVictoire = function(){
+        this.nbVictoire++;
+        this.displayVictoire();
+        toCookie();
+    };
+    
     this.takeDammage = function (nb) {
         this.PV -= nb;
+        self.codebar.PV = this.PV;
+        toCookie();
+        //fun note if a charactere as low pv it become a item.
         this.displayCodeBar();
-    }
+    };
 
     this.displayCodeBar = function () {
         var where;

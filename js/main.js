@@ -101,7 +101,7 @@ function display(display, tab) {
         elId = tab[i];
         if (document.getElementById(elId)) {
             document.getElementById(elId).style.display = display;
-            console.info(display, '#' + elId);
+            //console.info(display, '#' + elId);
         }
         else {
             console.error(elId, 'not an dom id to ' + display);
@@ -116,7 +116,7 @@ function displayClass(display, tab) {
         var els = document.getElementsByClassName(elClass);
         for (var j = 0; j < els.length; j++) {
             els[j].style.display = display;
-            console.info(display, '.' + els[j].className);
+            //console.info(display, '.' + els[j].className);
         }
     }
 }
