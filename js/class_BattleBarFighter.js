@@ -314,7 +314,7 @@ function BattleBarFighter(codebar, playerNumber) {
     };
     
     this.displayVictoire = function(){
-        document.getElementById('nb_combat').textContent=this.nbVictoire;
+        document.getElementById('nb_combat').textContent=Math.min(99,this.nbVictoire);
     };
 
     this.addVictoire = function(){
