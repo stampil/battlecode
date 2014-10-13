@@ -131,8 +131,11 @@ dom_fight.onmousedown = function () {
             document.getElementById('img_player_1').classList.add('blink');
             character_player1.takeDammage(degat);
         }
-        if (character_player1.PV <= 0)
+        if (character_player1.PV <= 0){
+            hideClass("content");
+            show("cards", "scan_button", "content_player_1");
             return;
+        }
 
         timeout_click_fight = setTimeout(function () {
             
